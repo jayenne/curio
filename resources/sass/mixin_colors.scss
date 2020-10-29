@@ -1,0 +1,56 @@
+@mixin colors {
+	
+	.bg-xl {
+		background-color: $brand-xl;
+	}
+	.bg-l {
+		background-color: $brand-l;
+	}
+	.bg-ml {
+		background-color: $brand-ml;
+	}
+	.bg-m {
+		background-color: $brand-m;
+	}
+	.bg-d {
+		background-color: $brand-d;
+	}
+	.bg-xd {
+		background-color: $brand-xd;
+	}
+	.bg-c {
+		background-color: $brand-c;
+	}
+
+
+	.text-hate {
+		color: $hate;
+	}
+	.text-cry {
+		color: $cry;
+	}
+	.text-angry {
+		color: $angry;
+	}
+	.text-dislike {
+		color: $dislike;
+	}
+	.text-meh {
+		color: $meh;
+	}
+	.text-like {
+		color: $like;
+	}
+	.text-smile {
+		color: $smile;
+	}
+	.text-beam {
+		color: $beam;
+	}
+	.text-laugh {
+		color: $laugh;
+	}
+	.text-love {
+		color: $love;
+	}
+}

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="loader" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 229.9 208" style="enable-background:new 0 0 229.9 208;" xml:space="preserve">
+
+<polygon id="1" fill="rgba(25,23,51,0.25)" points="63.9,42 103.9,42 96.8,82 56.8,82 ">
+	<animate  accumulate="none" additive="replace" attributeName="fill" begin="0s" calcMode="discrete" dur="1s" fill="remove" keyTimes="0;0.125;1" repeatCount="indefinite" restart="always" values="#ff00aa;rgba(25,23,51,0.25);rgba(25,23,51,0.25)"></animate>
+</polygon>
+
+<polygon id="2" fill="rgba(25,23,51,0.25)" points="105.9,42 145.9,42 138.8,82 98.8,82 ">
+	<animate  accumulate="none" additive="replace" attributeName="fill" begin="0.125s" calcMode="discrete" dur="1s" fill="remove" keyTimes="0;0.125;1" repeatCount="indefinite" restart="always" values="#ff00aa;rgba(25,23,51,0.25);rgba(25,23,51,0.25)"></animate>
+</polygon>
+
+<polygon id="3" fill="rgba(25,23,51,0.25)" points="147.9,42 187.9,42 180.8,82 140.8,82 ">
+	<animate  accumulate="none" additive="replace" attributeName="fill" begin="0.250s" calcMode="discrete" dur="1s" fill="remove" keyTimes="0;0.125;1" repeatCount="indefinite" restart="always" values="#ff00aa;rgba(25,23,51,0.25);rgba(25,23,51,0.25)"></animate>
+</polygon>
+
+<polygon id="4" fill="rgba(25,23,51,0.25)" points="140.5,84 180.5,84 173.4,124 133.4,124 ">
+	<animate  accumulate="none" additive="replace" attributeName="fill" begin="0.375s" calcMode="discrete" dur="1s" fill="remove" keyTimes="0;0.125;1" repeatCount="indefinite" restart="always" values="#ff00aa;rgba(25,23,51,0.25);rgba(25,23,51,0.25)"></animate>
+</polygon>
+
+<polygon id="5" fill="rgba(25,23,51,0.25)" points="133.1,126 173.1,126 166,166 126,166 ">
+	<animate  accumulate="none" additive="replace" attributeName="fill" begin="0.500s" calcMode="discrete" dur="1s" fill="remove" keyTimes="0;0.125;1" repeatCount="indefinite" restart="always" values="#ff00aa;rgba(25,23,51,0.25);rgba(25,23,51,0.25)"></animate>
+</polygon>
+
+<polygon id="6" fill="rgba(25,23,51,0.25)" points="91.1,126 131.1,126 124,166 84,166 ">
+	<animate  accumulate="none" additive="replace" attributeName="fill" begin="0.625s" calcMode="discrete" dur="1s" fill="remove" keyTimes="0;0.125;1" repeatCount="indefinite" restart="always" values="#ff00aa;rgba(25,23,51,0.25);rgba(25,23,51,0.25)"></animate>
+</polygon>
+
+<polygon id="7" fill="rgba(25,23,51,0.25)" points="41.7,168 79.7,168 35,206 ">
+	<animate  accumulate="none" additive="replace" attributeName="fill" begin="0.750s" calcMode="discrete" dur="1s" fill="remove" keyTimes="0;0.125;1" repeatCount="indefinite" restart="always" values="#ff00aa;rgba(25,23,51,0.25);rgba(25,23,51,0.25)"></animate>
+</polygon>
+
+<polygon id="8" fill="rgba(25,23,51,0.25)" points="49.1,126 89.1,126 82,166 42,166 ">
+	<animate  accumulate="none" additive="replace" attributeName="fill" begin="0.750s" calcMode="discrete" dur="1s" fill="remove" keyTimes="0;0.125;1" repeatCount="indefinite" restart="always" values="#ff00aa;rgba(25,23,51,0.25);rgba(25,23,51,0.25)"></animate>
+</polygon>
+
+<polygon id="9" fill="rgba(25,23,51,0.25)" points="56.5,84 96.5,84 89.4,124 49.4,124 ">
+	<animate  accumulate="none" additive="replace" attributeName="fill" begin="0.875s" calcMode="discrete" dur="1s" fill="remove" keyTimes="0;0.125;1" repeatCount="indefinite" restart="always" values="#ff00aa;rgba(25,23,51,0.25);rgba(25,23,51,0.25)"></animate>
+</polygon>
+
+<polygon fill="rgba(25,23,51,0.1)" points="21.9,42 61.9,42 54.8,82 14.8,82 "/>
+<polygon fill="rgba(25,23,51,0.1)" points="71.3,0 111.3,0 104.2,40 64.2,40 "/>
+<polygon fill="rgba(25,23,51,0.1)" points="155.3,0 195.3,0 188.2,40 148.2,40 "/>
+<polygon fill="rgba(25,23,51,0.1)" points="189.9,42 229.9,42 222.8,82 182.8,82 "/>
+<polygon fill="rgba(25,23,51,0.1)" points="175.1,126 215.1,126 208,166 168,166 "/>
+<polygon fill="rgba(25,23,51,0.1)" points="125.6,168 165.6,168 158.6,208 118.6,208 "/>
+<polygon fill="rgba(25,23,51,0.1)" points="81.6,168.8 74.6,208 35.6,208 "/>
+<polygon fill="rgba(25,23,51,0.1)" points="7.1,126 47.1,126 40,166 0,166 "/>
+
+</svg>

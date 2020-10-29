@@ -1,0 +1,65 @@
+# platform requires PHP ^7.4
+ with php extension --enable-exif
+
+#supervisor setup for horizon/redis
+	https://imwz.io/run-horizon-by-supervisord-in-laradock/
+
+# Docker (Sites/laradock)
+# beanstalkd? not sure if needed
+
+#check docker services currently running:
+docker-compose ps
+
+#spin up docker
+docker-compose up -d nginx mysql redis laravel-horizon php-worker workspace mailhog
+
+#redis console (just-in-case)
+docker-compose exec redis bash
+//config settings..
+redis-cli config set stop-writes-on-bgsave-error no
+//Web GUI
+docker-compose up -d redis redis-webui
+http://localhost:9987
+
+# ssh in to docker (from laradock directory)
+docker-compose exec workspace bash
+
+#changes to php-worker
+	docker-compose exec php-worker ash
+		supervisorctl reread
+		supervisorctl update
+		
+#spin up services...
+php artisan horizon
+php artisan queue:work --tries=3 --sleep=3 (for dev use: php artisan queue:listen)
+php artisan twitter:mentions
+
+# flushing
+php artisan redis:flush
+php artisan queue:flush
+php artisan horizon:purge
+
+#check php.ini
+php --ini 
+
+# change php version
+docker-compose build php-fpm
+docker-compose build workspace
+* restart the container
+
+# Laravel (Sites/project)
+// run php artisan platform:reinstall
+// to run the following...
+php artisan key:generate
+php artisan storage:link
+php artisan redis:flush
+php artisan queue:flush
+php artisan horizon:install
+php artisan telescope:install
+php artisan migrate:fresh --seed
+php artisan love:recount
+php artisan config:clear
+php artisan route:clear
+php artisan view:clear
+php artisan cache:clear
+

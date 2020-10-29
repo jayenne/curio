@@ -1,0 +1,60 @@
+@mixin icons {
+
+	// SIZING
+	svg{
+		pointer-events:none;
+		height: $icon-md;
+
+		&.icon-xs {
+			height: $icon-sm;
+		}
+		&.icon-sm {
+			height: $icon-sm;
+		}
+		&.icon-md {
+			height: $icon-md;
+		}
+		&.icon-lg {
+			height: $icon-lg;
+		}
+		&.icon-xl {
+			height: $icon-xl;
+		}
+
+	}
+
+	// COLORS
+	
+	svg:not(.brand, .image) {
+		path {		
+			fill:$brand-m;
+			
+			.c1, .st0  {
+				fill:$brand-d;
+			}
+			.c2, .st1 {
+				fill:$brand-c;
+			}
+			.c3, .st2  {
+				fill:$brand-xd;
+			}
+
+		}
+		
+		&.brand-xd path{
+			fill:$brand-xl;
+		}
+		&.brand-d path{
+			fill:$brand-l;
+		}
+		&.brand-m path{
+			fill:$brand-m;
+		}
+		&.brand-l path{
+			fill:$brand-d;
+		}
+		&.brand-xl path{
+			fill:$brand-xd;
+		}
+	}
+}

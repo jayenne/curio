@@ -1,0 +1,52 @@
+// Fonts: use <link>
+// import variables...
+@import 'variables';
+@import 'variables_bootstrap';
+@import '~bootstrap/scss/bootstrap';
+@import '~bootstrap-vue/src/index.scss';
+//@import '~vue-bootstrap-sidebar/src/scss/default-theme.scss';
+
+@import 'app_bootstrap';
+
+// PLATFORM
+@import 'app_icons';
+@import 'app_anims';
+//@import 'app_reactions';
+@import 'app_platform';
+@import 'app_forms';
+@import 'app_modal';
+@import 'app_upload';
+@import 'app_plyr';
+@import 'app_embed';
+
+//PLUGINS
+@import '~bs4-toast/dist/toast.min.css';
+
+//LOGIN
+@import 'app_login';
+
+//FRONTEND
+@import 'app_nav';
+@import 'app_grid';
+//@import 'user_card';
+//@import 'user_modal';
+@import 'user_profile';
+
+@import 'app_notifications';
+@import 'app_grid_item';
+@import 'app_grid_users';
+@import 'app_grid_boards';
+@import 'app_grid_posts';
+
+@import 'app_post_modal';
+//@import 'app_board_modal';
+
+
+// effects
+@import 'app_effects_kenburns';
+
+
+//Algolia search	
+@import '~instantsearch.css/themes/reset-min';
+@import '~instantsearch.css/themes/algolia-min';
+@import 'app_search';

@@ -1,0 +1,96 @@
+@mixin brands {
+
+	svg.brand { 
+		path, polygon, polyline {
+			&.c1, &.st0 { fill: $brand-c1 }
+			&.c2, &.st1 { fill: $brand-c2 }
+		}
+		&.invert {
+			path, polygon, polyline {
+				&.c1, &.st0 { fill: $white }
+				&.c2, &.st1 { fill: $brand-c2 }
+			}
+		}
+
+		&.icon {
+			path, polygon, polyline {
+				&.c1, &.st0 { fill: rgba($brand-c1, $opaic) }
+				&.c2, &.st1 { fill: rgba($brand-c2, 1 )}
+			}
+			&.invert {
+				path, polygon, polyline {
+					&.c1, &.st0 { fill: rgba($white, $opaic) }
+					&.c2, &.st1 { fill: rgba($brand-c2, 1) }
+				}
+			}
+		}
+	}
+
+	svg.facebook path { fill: $facebook }
+	svg.twitter path { fill: $twitter}
+	svg.youtube path { fill: $youtube}
+	svg.instagrammagenta path { fill: $instagrammagenta}
+	svg.instagramblue path { fill: $instagramblue}
+	svg.instagrampurple path { fill: $instagrampurple}
+	svg.instagramorange path { fill: $instagramorange}
+	svg.instagramyellow path { fill: $instagramyellow}
+	svg.googleblue path { fill: $googleblue}
+	svg.googleyellow path { fill: $googleyellow}
+	svg.googlegreen path { fill: $googlegreen}
+	svg.pinterest path { fill: $pinterest}
+	svg.googleplus path { fill: $googleplus}
+	svg.linkedin path { fill: $linkedin}
+	svg.vimeoblue path { fill: $vimeoblue}
+	svg.tumblr path { fill: $tumblr}
+	svg.snapchat path { fill: $snapchat}
+	svg.whatsappgreen path { fill: $whatsappgreen}
+	svg.whatsappteal1 path { fill: $whatsappteal1}
+	svg.whatsappteal2 path { fill: $whatsappteal2}
+	svg.mastodon path { fill: $mastodon}
+	svg.apple path { fill: $apple}
+	svg.amazon path { fill: $amazon}
+	svg.microsoftred path { fill: $microsoftred}
+	svg.microsoftgreen path { fill: $microsoftgreen}
+	svg.microsoftblue path { fill: $microsoftblue}
+	svg.microsoftyellow path { fill: $microsoftyellow}
+	svg.periscope path { fill: $periscope}
+	svg.foursquarepink path { fill: $foursquarepink} 
+	svg.foursquarenavy path { fill: $foursquarenavy}
+	svg.foursquareblue path { fill: $foursquareblue}
+	svg.yelp path { fill: $yelp}
+	svg.swarm path { fill: $swarm}
+	svg.medium path { fill: $medium}
+	svg.skypeblue path { fill: $skypeblue}
+	svg.skypedkblue path { fill: $skypedkblue}
+	svg.android path { fill: $android}
+	svg.stumbleupon path { fill: $stumbleupon}
+	svg.flickrpink path { fill: $flickrpink}
+	svg.flickrblue path { fill: $flickrblue}
+	svg.yahoo path { fill: $yahoo}
+	svg.twitch path { fill: $twitch}
+	svg.soundcloud path { fill: $soundcloud}
+	svg.spotifygreen path { fill: $spotifygreen}
+	svg.spotifydarkgreen path { fill: $spotifydarkgreen}
+	svg.dribbble path { fill: $dribbble}
+	svg.slackpurple path { fill: $slackpurple}
+	svg.slackblue path { fill: $slackblue}
+	svg.slackgreen path { fill: $slackgreen}
+	svg.slackred path { fill: $slackred}
+	svg.slackyellow path { fill: $slackyellow}
+	svg.reddit path { fill: $reddit}
+	svg.deviantart path { fill: $deviantart}
+	svg.pocket path { fill: $pocket}
+	svg.quora path { fill: $quora}
+	svg.quorablue path { fill: $quorablue}
+	svg.slideshareorange path { fill: $slideshareorange}
+	svg.slideshareblue path { fill: $slideshareblue}
+	svg.fivehundredpx path { fill: $fivehundredpx}
+	svg.vk path { fill: $vk}
+	svg.listlyorange path { fill: $listlyorange}
+	svg.listlyblue path { fill: $listlyblue}
+	svg.vine path { fill: $vine}
+	svg.steam path { fill: $steam}
+	svg.discord path { fill: $discord}
+	svg.telegram path { fill: $telegram}
+	svg.clarity path { fill: $clarity}
+}

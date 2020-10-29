@@ -1,0 +1,91 @@
+/* GENERAL */
+.form-check-input svg.icon.md {
+	margin-left: -0.35rem;
+}
+
+/* MIXINS */
+@import "mixin_icons";
+@include icons;
+
+@import "mixin_brands";
+@include brands;
+
+.invert {
+	$brand-xd: $brand-xl;
+	$brand-d: $brand-l;
+	$brand-m: $brand-m;
+	$brand-l: $brand-d;
+	$brand-xl: $brand-xd;
+
+	@import "mixin_icons";
+ 	@include icons;
+}
+svg#loader {
+		polygon {	
+			&.brand-ml {
+				fill: $brand-ml;
+			}
+		}
+	}
+.btn-icon {
+	svg {
+		path.on {
+			fill:$transparent;
+		}
+		path.off {
+			fill:$brand-m;
+		}
+	}
+	&.brand-xl {
+		path.off {
+			fill:$brand-xl;
+		}
+	}
+	&.brand-l {
+		path.off {
+			fill:$brand-l;
+		}
+	}
+	&.brand-m {
+		path.off {
+			fill:$brand-m;
+		}
+	}
+	&.brand-d {
+		path.off {
+			fill:$brand-d;
+		}
+	}
+	&.brand-xd {
+		path.off {
+			fill:$brand-xd;
+		}
+	}
+	&:hover {
+		svg {
+			path.off {
+				fill:$brand-c;
+			}
+		}
+	}
+	&.on  {
+		svg {
+			path.on {
+				fill:$brand-c;
+			}
+			path.off {
+				fill: $transparent;
+			}
+		}
+		&:hover {
+			svg {
+				path.on {
+					fill: $transparent;
+				}
+				path.off {
+					fill:$brand-c;
+				}
+			}
+		}
+	}
+}

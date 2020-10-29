@@ -1,0 +1,19 @@
+#toast-container {
+	position: fixed;
+	z-index: $zindex-tooltip + 1000;
+
+	#toast-wrapper {
+	    top: 1rem;
+	    right: 1rem;
+	    margin: 0rem;
+
+	    .toast{
+	    	min-width: 400px;
+	    	
+	    	.toast-header, .toast-body {
+	    		padding:1rem;
+	    	}
+	    }
+    }
+}
+ 

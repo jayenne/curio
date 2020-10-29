@@ -1,0 +1,27 @@
+:root {
+	--plyr-color-main: #FF1D8E;
+	--plyr-audio-controls-background: transparent !important;
+	--plyr-audio-control-color: #fff !important;
+	--plyr-video-controls-background: inear-gradient(rgba(0, 0, 255, 1), rgba(255, 0, 0, 1)) !important;
+	--plyr-video-progress-buffered-background: #ff0!important;
+	--plyr-audio-progress-buffered-background: #fff!important;
+}
+.plyr__progress {
+	background-image: url('/storage/svg/waveform.svg');
+	background-repeat: no-repeat;
+	background-size: 50px 50px;
+	background-position: center;
+	height:50px!important;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	progress {
+		
+		opacity: 1!important;
+		background-color:#fff!important;
+		&.plyr__progress__buffer {
+			background-color:#fff!important;
+			opacity: 1!important;
+		}
+	 }
+}

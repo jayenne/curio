@@ -1,0 +1,30 @@
+is lardock a sensible way to be doing this?
+	- what are the drawbacks?
+	- how hard would it be to optimise it?
+
+do i have emails on amazon?
+how do i edit env vars
+how do i deploy
+how do i view db
+how do i view / flush logs?
+
+how do i rum composer commands
+how do i run artisan commands
+	- e.g: migrate:fresh --seed 
+
+how do i know if/which daemons are running?
+	- queue:work
+	- horizon
+	- twitter:mention
+
+how do i know that if these daemons fall over they will restart?
+
+do emails get sent?
+
+do i have a s3 bucket?
+	- is there a dashboard? settings?
+
+do images get stored on s3 bucket?
+	- is there a dashboard? settings?
+
+

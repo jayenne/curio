@@ -1,0 +1,31 @@
+#UI
+#home
+* add hero
+* on load show random posts
+
+#pages
+after user user/boards/posts, add similar by others as a new section to fill the page.
+replace full data  response with data & partial as per: https://codepen.io/desandro/pen/LLjYgG/
+#cards
+add zoom pointer on hover
+
+#boards
+
+#posts
+show full post
+open link to original
+
+#users
+
+
+#PLATFORM
+#search
+	make search work for user, boards, posts, hashtags, urls,
+#posts
+	check links are alive
+	remove external link for posts no long valid.
+
+
+
+#NOTES
+revise all docs

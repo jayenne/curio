@@ -1,0 +1,176 @@
+@font-face {
+    font-family: "guru-meditation";
+    src: url("/storage/fonts/Guru-Meditation.eot"), url("/storage/fonts/Guru-Meditation.ttf") format("truetype"), url("/storage/fonts/Guru-Meditation.svg") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    box-sizing: border-box;
+}
+*:focus {outline:0;}
+/* force scrollbar */
+html {
+    overflow-y: scroll;
+    font-size: $font-size-base;
+}
+
+body {
+    background-color:$body-bg;
+    background-repeat:no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.p1 { font-size: $h1-font-size; }
+.p2 { font-size: $h2-font-size; }
+.p3 { font-size: $h3-font-size; }
+.p4 { font-size: $h4-font-size; }
+.p5 { font-size: $h5-font-size; }
+.p6 { font-size: $h6-font-size; }
+
+#app {
+    width:100vw;
+    min-height:100vh;
+}
+
+#main {
+    background-color: $white;
+    margin-top:$main-margin-top;
+}
+.max-content {
+    width: max-content;
+}
+.fixed-center-middle {
+  position: fixed;
+  top: 50%;
+  left: 25%;
+  z-index: $zindex-fixed;
+}
+.no-shadow {
+    -webkit-box-shadow: none!important;
+    -moz-box-shadow: none!important;
+    box-shadow: none!important;
+}
+
+.navbar-nav-users {
+    min-height:60px;
+    padding:3rem;
+    background:#fff;
+    font-family:$logo-font;
+}
+
+.image-background-bottom {
+    background-position: bottom;
+}
+
+// text
+.text-xl {
+    color: $brand-xl;
+}
+.text-l {
+    color: $brand-l;
+}
+.text-ml {
+    color: $brand-ml;
+}
+.text-m {
+    color: $brand-m;
+}
+.text-d {
+    color: $brand-d;
+}
+.text-xd {
+    color: $brand-xd;
+}
+
+// positions 
+
+.bottom {
+    bottom:0;
+}
+.left {
+    left:0; 
+}
+.right {
+    right:0;
+    
+}
+.top {
+    top:0;
+}
+
+// Buttons
+.btn-link {
+    box-shadow:none;
+    
+    &.action {
+        padding:0;
+        margin:0;
+    }
+}
+.btn-outline-light:hover {
+    color:$brand-xd;
+    background-color: rgba($white,0.5);
+}
+.ratio-square {
+    height: 2rem * $ratio-square;
+    width: 2rem;
+    padding:0.5rem;
+    line-height: 1rem;
+    svg {
+        width:100%;
+        height:100%;
+    }
+    &btn {
+        padding:0.5rem;
+        line-height:1rem;
+        display:flex;
+        justify-content: center;
+        align-items:center;
+        padding:0.5rem;
+    }
+    &.btn-lg {
+        height: 3rem * $ratio-square;
+        line-height:1.25rem;
+        width: 3rem;
+        padding:0.7rem;
+    }
+    
+    &.btn-sm {
+        height: 1.5rem * $ratio-square;
+        line-height:1rem;
+        width: 1.5rem;
+        padding:0.3rem;
+    }
+}
+
+
+
+.search-nav ul, .guru-list ul {
+    li {
+        list-style: none;
+        float: left;
+        margin:0 1rem;
+    }
+}
+
+.bg-transparent {
+    background-color: $transparent;
+    border:0;
+}
+
+.p-1px {
+    padding:1px;
+}
+
+.hero {
+    height: $hero-height;
+    min-height: $hero-height;
+    background: linear-gradient(90deg, rgba(30,45,68,1) 0%, rgba(63,81,105,1) 100%), url($bg-image);
+    background-repeat:no-repeat;
+    background-size: cover;
+    background-position:center;
+    background-attachment:relative;
+    background-blend-mode: multiply;
+}

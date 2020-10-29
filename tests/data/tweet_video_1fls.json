@@ -1,0 +1,210 @@
+{
+    "created_at": "Fri Oct 09 15:41:40 +0000 2020",
+    "id": 1314591870958407681,
+    "id_str": "1314591870958407681",
+    "text": "@addcurio  Testing twitter audio https:\/\/t.co\/2pqtxUJbF6",
+    "display_text_range": [
+        0,
+        38
+    ],
+    "source": "<a href=\"http:\/\/twitter.com\/download\/iphone\" rel=\"nofollow\">Twitter for iPhone<\/a>",
+    "truncated": false,
+    "in_reply_to_status_id": null,
+    "in_reply_to_status_id_str": null,
+    "in_reply_to_user_id": 1184841473965076481,
+    "in_reply_to_user_id_str": "1184841473965076481",
+    "in_reply_to_screen_name": "addcurio",
+    "user": {
+        "id": 3000477125,
+        "id_str": "3000477125",
+        "name": "Curio Test",
+        "screen_name": "addcuriotest",
+        "location": "London, England",
+        "url": "http:\/\/jayenne.com",
+        "description": "This is a test account for my Twitter API development.",
+        "translator_type": "none",
+        "protected": false,
+        "verified": false,
+        "followers_count": 0,
+        "friends_count": 3,
+        "listed_count": 0,
+        "favourites_count": 6,
+        "statuses_count": 12,
+        "created_at": "Mon Jan 26 22:46:20 +0000 2015",
+        "utc_offset": null,
+        "time_zone": null,
+        "geo_enabled": false,
+        "lang": null,
+        "contributors_enabled": false,
+        "is_translator": false,
+        "profile_background_color": "C0DEED",
+        "profile_background_image_url": "http:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png",
+        "profile_background_image_url_https": "https:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png",
+        "profile_background_tile": false,
+        "profile_link_color": "1DA1F2",
+        "profile_sidebar_border_color": "C0DEED",
+        "profile_sidebar_fill_color": "DDEEF6",
+        "profile_text_color": "333333",
+        "profile_use_background_image": true,
+        "profile_image_url": "http:\/\/pbs.twimg.com\/profile_images\/1277631864648486912\/_EUCbmoG_normal.jpg",
+        "profile_image_url_https": "https:\/\/pbs.twimg.com\/profile_images\/1277631864648486912\/_EUCbmoG_normal.jpg",
+        "profile_banner_url": "https:\/\/pbs.twimg.com\/profile_banners\/3000477125\/1593446429",
+        "default_profile": true,
+        "default_profile_image": false,
+        "following": null,
+        "follow_request_sent": null,
+        "notifications": null
+    },
+    "geo": null,
+    "coordinates": null,
+    "place": null,
+    "contributors": null,
+    "is_quote_status": false,
+    "quote_count": 0,
+    "reply_count": 0,
+    "retweet_count": 0,
+    "favorite_count": 0,
+    "entities": {
+        "hashtags": [
+            {
+                "text": "test",
+                "indices": [
+                    10,
+                    15
+                ]
+            }
+        ],
+        "urls": [],
+        "user_mentions": [
+            {
+                "screen_name": "addcurio",
+                "name": "Curio",
+                "id": 1184841473965076481,
+                "id_str": "1184841473965076481",
+                "indices": [
+                    0,
+                    9
+                ]
+            }
+        ],
+        "symbols": [],
+        "media": [
+            {
+                "id": 1314591857142378496,
+                "id_str": "1314591857142378496",
+                "indices": [
+                    39,
+                    62
+                ],
+                "additional_media_info": {
+                    "monetizable": false
+                },
+                "media_url": "http:\/\/pbs.twimg.com\/ext_tw_video_thumb\/1314591857142378496\/pu\/img\/hTV3yJRcpQHqcrWD.jpg",
+                "media_url_https": "https:\/\/pbs.twimg.com\/ext_tw_video_thumb\/1314591857142378496\/pu\/img\/hTV3yJRcpQHqcrWD.jpg",
+                "url": "https:\/\/t.co\/2pqtxUJbF6",
+                "display_url": "pic.twitter.com\/2pqtxUJbF6",
+                "expanded_url": "https:\/\/twitter.com\/addcuriotest\/status\/1314591870958407681\/video\/1",
+                "type": "photo",
+                "sizes": {
+                    "thumb": {
+                        "w": 150,
+                        "h": 150,
+                        "resize": "crop"
+                    },
+                    "medium": {
+                        "w": 1200,
+                        "h": 675,
+                        "resize": "fit"
+                    },
+                    "small": {
+                        "w": 680,
+                        "h": 383,
+                        "resize": "fit"
+                    },
+                    "large": {
+                        "w": 1280,
+                        "h": 720,
+                        "resize": "fit"
+                    }
+                }
+            }
+        ]
+    },
+    "extended_entities": {
+        "media": [
+            {
+                "id": 1314591857142378496,
+                "id_str": "1314591857142378496",
+                "indices": [
+                    39,
+                    62
+                ],
+                "additional_media_info": {
+                    "monetizable": false
+                },
+                "media_url": "http:\/\/pbs.twimg.com\/ext_tw_video_thumb\/1314591857142378496\/pu\/img\/hTV3yJRcpQHqcrWD.jpg",
+                "media_url_https": "https:\/\/pbs.twimg.com\/ext_tw_video_thumb\/1314591857142378496\/pu\/img\/hTV3yJRcpQHqcrWD.jpg",
+                "url": "https:\/\/t.co\/2pqtxUJbF6",
+                "display_url": "pic.twitter.com\/2pqtxUJbF6",
+                "expanded_url": "https:\/\/twitter.com\/addcuriotest\/status\/1314591870958407681\/video\/1",
+                "type": "video",
+                "video_info": {
+                    "aspect_ratio": [
+                        16,
+                        9
+                    ],
+                    "duration_millis": 3738,
+                    "variants": [
+                        {
+                            "bitrate": 832000,
+                            "content_type": "video\/mp4",
+                            "url": "https:\/\/video.twimg.com\/ext_tw_video\/1314591857142378496\/pu\/vid\/640x360\/KmtGG7AbQstUNHE0.mp4?tag=10"
+                        },
+                        {
+                            "content_type": "application\/x-mpegURL",
+                            "url": "https:\/\/video.twimg.com\/ext_tw_video\/1314591857142378496\/pu\/pl\/GvcAPrk2SaBb7zll.m3u8?tag=10"
+                        },
+                        {
+                            "bitrate": 256000,
+                            "content_type": "video\/mp4",
+                            "url": "https:\/\/video.twimg.com\/ext_tw_video\/1314591857142378496\/pu\/vid\/480x270\/fcMWZ7TIMHsCCxK6.mp4?tag=10"
+                        },
+                        {
+                            "bitrate": 2176000,
+                            "content_type": "video\/mp4",
+                            "url": "https:\/\/video.twimg.com\/ext_tw_video\/1314591857142378496\/pu\/vid\/1280x720\/OG_VD1pKzogdhKPM.mp4?tag=10"
+                        }
+                    ]
+                },
+                "sizes": {
+                    "thumb": {
+                        "w": 150,
+                        "h": 150,
+                        "resize": "crop"
+                    },
+                    "medium": {
+                        "w": 1200,
+                        "h": 675,
+                        "resize": "fit"
+                    },
+                    "small": {
+                        "w": 680,
+                        "h": 383,
+                        "resize": "fit"
+                    },
+                    "large": {
+                        "w": 1280,
+                        "h": 720,
+                        "resize": "fit"
+                    }
+                }
+            }
+        ]
+    },
+    "favorited": false,
+    "retweeted": false,
+    "possibly_sensitive": false,
+    "filter_level": "low",
+    "lang": "en",
+    "timestamp_ms": "1602258100629"
+}

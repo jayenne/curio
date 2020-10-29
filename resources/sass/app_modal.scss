@@ -1,0 +1,151 @@
+// MODALS
+.modal-backdrop {
+    background: $modal-backdrop-background;
+    background-repeat:no-repeat;
+    background-size: cover;
+    background-position:center;
+    background-attachment:fixed;
+    background-blend-mode: $modal-backdrop-blend-mode;  
+    min-height:100vh;
+    opacity: $modal-backdrop-opacity;
+}
+
+.modal { 
+    .card {
+        border-radius: $border-radius;
+    }
+    .modal-dialog {
+        height:100vh;
+
+        .modal-content {
+            background-color: $modal-background;
+            padding:0 0 1rem 0;
+            border: none;
+            border-radius: 0;
+            box-shadow: $modal-shadow;
+            height:100vh;
+
+            .close {
+                position: absolute;
+                right: 1rem;
+                background-color: $transparent;
+                padding: 1rem;
+                margin: 1rem;
+                svg {
+                    .off {
+                        fill: $brand-m;
+                    }
+                    .on {
+                        fill: $brand-c;
+                    }
+                }
+            }
+
+            .modal-header {
+                border: 0;
+                background-color: $transparent;
+                h3 {
+                    font-weight: $font-weight-bold;
+                    color: $brand-xd;
+                }
+
+                &.overlayed {
+                    position: absolute;
+                    top:0;
+                    width:100%;
+                    z-index:1;
+                }
+            }
+            .modal-body {
+                padding:0;
+                margin:0 0 80px 0;
+
+                input {
+                    border: $input-border;
+                    color: $input-color;
+                    background: $input-bg;
+                }
+                .card {
+                    margin-bottom: 3rem;
+                }
+            }
+            .modal-footer {
+                background:$transparent;
+                padding:0;
+                > div {
+                    background-color: $primary;
+                    box-shadow: $modal-shadow;
+                    margin:0;
+                    padding:1rem;
+                }
+
+            }
+        }
+    }
+}
+
+/*******************************
+* MODAL AS LEFT/RIGHT SIDEBAR
+* Add "left" or "right" in modal parent div, after class="modal".
+*******************************/
+.modal {
+
+    &.left, &.right {
+
+        .modal-dialog {
+            position: fixed;
+            margin: auto;
+            height: 100%;
+            max-width:100%;
+            width: 100%;
+            -webkit-transform: translate3d(0%, 0, 0);
+                -ms-transform: translate3d(0%, 0, 0);
+                 -o-transform: translate3d(0%, 0, 0);
+                    transform: translate3d(0%, 0, 0);
+        }
+
+        .modal-content {
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .modal-body {
+            padding: 0;
+        }
+
+        &.left.fade {
+            .modal-content {
+                float:left;
+            }
+            &.show  .modal-dialog{
+                left: 0;
+            }
+
+            .modal-dialog {
+                left: - 100%;
+                -webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
+                   -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
+                     -o-transition: opacity 0.3s linear, left 0.3s ease-out;
+                        transition: opacity 0.3s linear, left 0.3s ease-out;
+            }
+        }
+        
+        &.right.fade {
+            .modal-content {
+                float:right;
+            }
+            &.show  .modal-dialog{
+                right: 0;
+            }
+            
+            .modal-dialog{
+                right: - 100%;
+                -webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+                   -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+                     -o-transition: opacity 0.3s linear, right 0.3s ease-out;
+                        transition: opacity 0.3s linear, right 0.3s ease-out;
+            }
+        }
+ 
+    }
+}

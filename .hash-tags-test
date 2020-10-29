@@ -1,0 +1,52 @@
+https://regex101.com/r/vXyxl5/5
+'/(?:#)(test)(?:(?:!)|(?::)(?:([a-zA-Z0-9,-_."\'\s]+))(?:!)\s*)/mi';
+
+PASSES:
+#boards:foo bar, bob! //end
+#h:this is-my heading! //end
+#heading:this is-my heading! //end
+#headline:this is-my heading! //end
+#description:this is_my description! //end
+#notes:my notes are hidden! //end
+#note:my note! //end
+#n:my note! //end
+#tags:foo,bar bob! //end
+#tag:foo bar,bob! //end
+#t:foo bar,bob! //end
+#categories:foo bar bob! //end
+#categories:foo.bar.bob! //end
+#category:foo bar,bob! //end
+#category:foo bar.bob! //end
+#cats:foo bar bob! //end
+#cats:foo.bar.bob! //end
+#cat:foo! //end
+#cat:foo bar! //end
+#c:foo.bar.bob! //end
+#c:foo bar. bob! //end
+#c:foo,bar,bob! //end
+#private! //end
+#pvt! //end
+#p! //end
+#subscriber! //end
+#sub! //end
+#s! //end
+#alert! //end
+#quiet! //end
+#first! //end
+#1st! //end
+#1! //end
+#test:foo //end
+#test:foo_bar_bob!     //end
+ #test:foo_bar_bob!   #test:foo_bar_bob! //end
+#test!! //end
+
+FAILS:
+#board:!
+#board:
+#pickle!
+#sausage!
+#aligator!
+#c=foo bar bob!
+
+TEST TWEET:
+@addcurio #b:foo!Hello world @pSouper jayenne.com/foo?page=1 jayenne.com/foo?page=2 #test:foo_bar_bobo! jayenne.com/foo?bar=1 exmaple.org #foo @_jayenne #bar #h:my heading!#d:my description!#t:one,two!#c:three,four,five!#s!#p!#q!#f!#1st! #n:my note! How are you?#test:foo_bar_bob!

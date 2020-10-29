@@ -1,0 +1,169 @@
+.btn-icon {
+	svg {
+		path.off {
+			fill: $brand-m;
+		}
+		path.on {
+			fill: $brand-c;
+		}
+		/*
+		&.hate path.off {
+			fill: $hate;
+			stroke: $hate;
+		}
+		&.cry path.off {
+			fill: $cry;
+			stroke: $cry;
+		}
+		&.angry path.off {
+			fill: $angry;
+			stroke: $angry;
+		}
+		&.sad path.off {
+			fill: $sad;
+			stroke: $sad;
+		}
+		&.dislike path.off {
+			fill: $dislike;
+			stroke: $dislike;
+		}
+		&.meh path.off {
+			fill: $meh;
+			stroke: $meh;
+		}
+		&.like path.off {
+			fill: $like;
+			stroke: $like;
+		}
+		&.smile path.off {
+			fill: $smile;
+			stroke: $smile;
+		}
+		&.beam path.off {
+			fill: $beam;
+			stroke: $beam;
+		}
+		&.laugh path.off {
+			fill: $laugh;
+			stroke: $laugh;
+		}
+		&.love path.off {
+			fill: $love;
+			stroke: $love;
+		}
+		*/
+	}
+	
+	&:hover {
+		svg {
+			path.off {
+				fill: $brand-m;
+			}
+			path.on {
+				fill: $brand-c;
+			}
+			/*
+			&.hate path.off {
+				fill: $hate;
+				stroke: $hate;
+			}
+			&.cry path.off {
+				fill: $cry;
+				stroke: $cry;
+			}
+			&.angry path.off {
+				fill: $angry;
+				stroke: $angry;
+			}
+			&.sad path.off {
+				fill: $sad;
+				stroke: $sad;
+			}
+			&.dislike path.off {
+				fill: $dislike;
+				stroke: $dislike;
+			}
+			&.meh path.off {
+				fill: $meh;
+				stroke: $meh;
+			}
+			&.like path.off {
+				fill: $like;
+				stroke: $like;
+			}
+			&.smile path.off {
+				fill: $smile;
+				stroke: $smile;
+			}
+			&.beam path.off {
+				fill: $beam;
+				stroke: $beam;
+			}
+			&.laugh path.off {
+				fill: $laugh;
+				stroke: $laugh;
+			}
+			&.love path.off {
+				fill: $love;
+				stroke: $love;
+			}
+			*/
+		}
+	}
+	&.on  {
+		svg {
+			path.off {
+				fill: $transparent;
+			}
+			path.on {
+				fill: $brand-c;
+			}
+			/*
+			&.hate path.on {
+				fill: $hate;
+				stroke: $brand-xd;
+			}
+			&.cry path.on {
+				fill: $cry;
+				stroke: $cry;
+			}
+			&.angry path.on {
+				fill: $angry;
+				stroke: $brand-xd;
+			}
+			&.sad path.on {
+				fill: $sad;
+				stroke: $brand-xd;
+			}
+			&.dislike path.on {
+				fill: $dislike;
+				stroke: $brand-xd;
+			}
+			&.meh path.on {
+				fill: $meh;
+				stroke: $brand-xd;
+			}
+			&.like path.on {
+				fill: $like;
+				stroke: $brand-xd;
+			}
+			&.smile path.on {
+				fill: $smile;
+				stroke: $brand-xd;
+			}
+			&.beam path.on {
+				fill: $beam;
+				stroke: $brand-xd;
+			}
+			&.laugh path.on {
+				fill: $laugh;
+				stroke: $brand-xd;
+			}
+			&.love path.on {
+				fill: $love;
+				stroke: $brand-xd;
+			}
+			*/
+		}
+	}
+}

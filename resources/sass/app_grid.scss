@@ -1,0 +1,55 @@
+
+.grid {
+	min-height: $grid-min-height;
+	margin-bottom:5rem;
+}
+.ff-overlay {
+	border-radius: 50%;
+	background-color: $gif-overlay-bgcolor !important;
+	background-image: $gif-overlay-img !important;
+	background-size: $gif-overlay-size !important;
+}
+.loader {
+	position:fixed;
+	top:50%;
+	left:50%;
+	width:auto;
+	z-index: $zindex-fixed;
+	text-align:center;
+	background: $transparent;
+
+	.inner {
+		position: relative;
+		left: -50%;
+		top: 50%;
+		background: $transparent;
+
+		.infinite-scroll-request, .infinite-scroll-last, .infinite-scroll-error {
+			padding:0.25rem;
+			background: $brand-xd;
+			color: $white;
+			border-radius: $border-radius;
+			border: $border-loader;
+			transform: skew(-11deg);
+			box-shadow: $shadow-loader;
+		}
+	}
+
+	&.footer {
+		
+		position: absolute;
+		top:100%;
+		padding:1rem;
+		color: $brand-d;
+		
+		.inner {
+			position: relative;
+			left: -50%;
+			top: -12rem;
+			.infinite-scroll-request, .infinite-scroll-last, .infinite-scroll-error {
+				padding: 1rem 4rem;
+				border-radius: $grid-loader-footer-radius;
+			}
+		}
+	}
+}

@@ -1,0 +1,35 @@
+.debug-o, .debug-om {
+	outline:1px dashed #f0f;
+}
+.debug-or {
+	outline:1px dashed #f00;
+}
+.debug-og {
+	outline:1px dashed #0f0;
+}
+.debug-ob {
+	outline:1px dashed #00f;
+}
+.debug-y {
+	outline:1px dashed #ff0;
+}
+.debug-oc {
+	outline:1px dashed #0ff;
+}
+
+.debug-bg {
+	background: #fcf;
+}
+.debug-children > div{
+	outline:1px dashed #0f0;
+}
+
+#main {
+}
+.grid {
+}
+.grid-item {
+}
+
+.card {
+}

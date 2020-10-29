@@ -1,0 +1,60 @@
+.ais-InstantSearch {
+    position:relative;
+    max-width:50vw;
+    min-width:300px;
+    
+
+    form.ais-SearchBox-form {  
+        svg.ais-SearchBox-submitIcon path{
+            fill: $brand-d;
+        }
+        input.ais-SearchBox-input {
+            border-radius:0;
+            border:0;
+            border-bottom: 1px solid $brand-l;
+            text-indent: 1rem;
+            background:none;
+            
+            font-weight:100;
+            text-transform: uppercase;
+            letter-spacing: 0.25rem;
+        }
+        button.ais-SearchBox-submit {
+            background:none;
+            margin:0 10px;
+            border:0;
+            fill:#fff;
+            color:#fff;
+            width:20px;
+            max-height:16px;
+        }
+        
+    }
+ 
+    .ais-Hits {
+        position:absolute;
+        z-index:999;
+        background:#fff;
+        
+        ol {
+            margin:0;
+            border-radius: 200px;
+            
+            li {
+                width:100%;
+                margin:0;
+                padding:0.5rem;
+                box-shadow: none;
+                border:0;
+                border-bottom:1px solid #c4c8d8;
+            }
+            
+            img {
+                width:30px;
+                height:30px;
+                margin-right:1rem;
+                border-radius: 50%;
+            }
+        }
+    }
+}

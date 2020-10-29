@@ -1,0 +1,101 @@
+.modal-item {
+    margin-bottom: $modal-margin-bottom;
+    .card {
+        background: $white;
+        border:$grid-item-border;
+        border-radius:$border-radius;
+        min-height: $card-min-height;
+        color: $card-color;
+
+        .card-byline {
+            .avatar {
+                width:$grid-details-avatar-size;
+                height:$grid-details-avatar-size;
+                border:$grid-details-avatar-border;
+                border-radius:$grid-details-avatar-border-radius;
+                background-color: $white;
+            }
+            .source {
+                color: $white;
+            }
+        }
+        .card-img-top {
+            padding:0;
+            margin:0;
+            margin-bottom: -(($grid-details-avatar-size + $grid-details-avatar-padding)/2);
+            > img {
+                float:left!important;
+                width: 100%;
+                margin:0;
+                min-height:$grid-item-min-height;
+                height: $grid-item-min-height;
+                object-fit: cover;
+            }
+            img.of-4 {
+                width:50%;
+                min-height:round($grid-item-min-height/2);
+                height:round($grid-item-min-height/2);
+                float: left;
+                &:nth-child(1), &:nth-child(3){
+                    border-right:1px solid $card-bg;
+                }
+                &:nth-child(1), &:nth-child(2){
+                    border-bottom:1px solid $card-bg;
+                }
+
+            }
+            img.of-3 {
+                &:nth-child(1){
+                    border-right:1px solid $card-bg;
+                }
+                &:nth-child(2){
+                    border-bottom:1px solid $card-bg;
+                }
+                &.img-0 {
+                    width:66%;
+                    height:100%;
+                }
+                &.img-1, &.img-2 {
+                    width: 33%;
+                    min-height: round($grid-item-min-height/2);
+                    height:round($grid-item-min-height/2);
+                }
+            }
+            img.of-2 {
+                width:50%;
+                &:nth-child(1){
+                    border-right:1px solid $card-bg;
+                }
+            }
+
+            .source {
+                color: $white;
+            }
+        }
+        .card-body {
+            padding:0;
+
+            .stats {
+                color: $brand-m;
+                width: $card-stats-col-width;
+                min-width: $grid-details-avatar-size + $card-cap-padding-x;
+                text-align:center;
+                .stat {
+                    margin-bottom:$card-cap-padding-y;
+                }
+            }
+            .card-copy {
+                margin: $card-copy-margin;
+                h5 {
+                    text-transform: $card-title-text-transform;
+                }
+            }
+            .actions {
+                color: $brand-d;
+                min-width: $card-actions-col-width;
+                text-align:center;
+            }
+            
+        }
+    }
+}

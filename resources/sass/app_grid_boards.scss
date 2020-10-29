@@ -1,0 +1,161 @@
+#grid-boards {
+    .grid-item {
+        .card {
+            margin: $card-margin;
+            padding:$card-padding;
+            border:$grid-item-border;
+            border-radius:$border-radius;
+            box-shadow: $card-shadow;
+            -webkit-box-shadow:$card-shadow;
+            -moz-box-shadow: $card-shadow;
+            min-height: $card-min-height;
+            color: $card-color;
+
+            small {
+                font-size:0.85rem;
+            }
+            .card-img-top {
+                padding:0;
+                margin: $card-img-top-margin;
+                min-height: $card-img-min-height;
+                > img {
+                    float:left;
+                    width: 100%;
+                    margin:0;
+                    height: $grid-item-min-height;
+                    object-fit: cover;
+                }
+                img.of-6 {
+                    width:33.33%;
+                    height:round( $grid-item-min-height/2 );
+                    border-bottom: 1px solid $card-bg;
+                }
+                img.of-5 {
+                    width:100%;
+                    height:round( ($grid-item-min-height/3) * 2);
+                    border-bottom: 1px solid $card-bg;
+                    &:not(:first-child){
+                        width:25%;
+                        height:round( $grid-item-min-height/3);
+                        &:not(:last-child) {
+                            border-right:1px solid $card-bg;
+                        }
+                    }
+                }
+                img.of-4 {
+                    width:50%;
+                    height:round($grid-item-min-height/2);
+                    float: left;
+                    &:nth-child(1), &:nth-child(3){
+                        border-right:1px solid $card-bg;
+                    }
+                    &:nth-child(1), &:nth-child(2){
+                        border-bottom:1px solid $card-bg;
+                    }
+
+                }
+                img.of-3 {
+                    &:nth-child(1){
+                        border-right:1px solid $card-bg;
+                    }
+                    &:nth-child(2){
+                        border-bottom:1px solid $card-bg;
+                    }
+                    &.img-1 {
+                        width:50%;
+                    }
+                    &.img-2, &.img-3 {
+                        width: 50%;
+                        height:round($grid-item-min-height/2);
+                    }
+                }
+                img.of-2 {
+                    width:50%;
+                    &:nth-child(1){
+                        border-right:1px solid $card-bg;
+                    }
+                }
+            }
+            
+            .source {
+                height: $grid-details-avatar-size /2;
+                color: $brand-d;
+                svg path {
+                    fill: $brand-d;
+                }
+                &.invert {
+                    color: $brand-xl;
+                    svg path {
+                        fill: $brand-xl;
+                    }
+                }
+            }
+
+            .avatar {
+                width:$grid-details-avatar-size;
+                height:$grid-details-avatar-size;
+                border:$grid-details-avatar-border;
+                border-radius:$grid-details-avatar-border-radius;
+                background-color: $white;
+            }
+
+            .card-body {
+                padding: 0;
+
+                .card-stats {            
+                    background: $brand-xl;
+                    background: $card-stats-background;
+                    width: $card-stats-col-width;
+                    min-width: $grid-details-avatar-size + $card-cap-padding-x;
+                    text-align:center;
+
+                    .stats {
+                        color: $brand-m;
+                        .stat {
+                            margin-bottom:$card-cap-padding-y;
+                        }
+                    }
+                }         
+                
+                .card-copy {
+                    position:relative;
+                    overflow:hidden;
+                    
+                    margin: $card-copy-margin;
+                    padding: $card-copy-padding;
+                    h5 {
+                        text-transform: $card-title-text-transform;
+                    }
+                }
+                .card-actions {
+                    color: $brand-d;
+                    min-width: $card-actions-col-width;
+                    text-align:center;
+                }   
+
+            }
+            
+            .card-overlay {
+                .overlay { 
+                    opacity:1;
+                    background: $grid-overlay-background;
+                    position: absolute;
+                    bottom: 0;
+                    left: 100%;
+                    right: 0;
+                    overflow-x: hidden;
+                    width: $grid-overlay-width;
+                    height: $grid-overlay-height;
+                    transition: $grid-overlay-transition;
+                    padding: $grid-overlay-padding;
+                  
+                    &.show {
+                        width: 100%;
+                        left: 0;
+                    }
+                }
+            }
+
+        }
+    }
+}

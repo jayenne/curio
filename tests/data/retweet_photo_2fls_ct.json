@@ -1,0 +1,307 @@
+{
+    "created_at": "Fri Oct 09 17:22:23 +0000 2020",
+    "id": 1314617214750928903,
+    "id_str": "1314617214750928903",
+    "text": "@addcurio awww. Cornie-Jasalass!",
+    "source": "<a href=\"http:\/\/twitter.com\/download\/iphone\" rel=\"nofollow\">Twitter for iPhone<\/a>",
+    "truncated": false,
+    "in_reply_to_status_id": null,
+    "in_reply_to_status_id_str": null,
+    "in_reply_to_user_id": 1184841473965076481,
+    "in_reply_to_user_id_str": "1184841473965076481",
+    "in_reply_to_screen_name": "addcurio",
+    "user": {
+        "id": 3000477125,
+        "id_str": "3000477125",
+        "name": "Curio Test",
+        "screen_name": "addcuriotest",
+        "location": "London, England",
+        "url": "http:\/\/jayenne.com",
+        "description": "This is a test account for my Twitter API development.",
+        "translator_type": "none",
+        "protected": false,
+        "verified": false,
+        "followers_count": 1,
+        "friends_count": 3,
+        "listed_count": 0,
+        "favourites_count": 6,
+        "statuses_count": 16,
+        "created_at": "Mon Jan 26 22:46:20 +0000 2015",
+        "utc_offset": null,
+        "time_zone": null,
+        "geo_enabled": false,
+        "lang": null,
+        "contributors_enabled": false,
+        "is_translator": false,
+        "profile_background_color": "C0DEED",
+        "profile_background_image_url": "http:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png",
+        "profile_background_image_url_https": "https:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png",
+        "profile_background_tile": false,
+        "profile_link_color": "1DA1F2",
+        "profile_sidebar_border_color": "C0DEED",
+        "profile_sidebar_fill_color": "DDEEF6",
+        "profile_text_color": "333333",
+        "profile_use_background_image": true,
+        "profile_image_url": "http:\/\/pbs.twimg.com\/profile_images\/1277631864648486912\/_EUCbmoG_normal.jpg",
+        "profile_image_url_https": "https:\/\/pbs.twimg.com\/profile_images\/1277631864648486912\/_EUCbmoG_normal.jpg",
+        "profile_banner_url": "https:\/\/pbs.twimg.com\/profile_banners\/3000477125\/1593446429",
+        "default_profile": true,
+        "default_profile_image": false,
+        "following": null,
+        "follow_request_sent": null,
+        "notifications": null
+    },
+    "geo": null,
+    "coordinates": null,
+    "place": null,
+    "contributors": null,
+    "quoted_status_id": 1314616767298363393,
+    "quoted_status_id_str": "1314616767298363393",
+    "quoted_status": {
+        "created_at": "Fri Oct 09 17:20:36 +0000 2020",
+        "id": 1314616767298363393,
+        "id_str": "1314616767298363393",
+        "text": "Retweet this image with c&amp;t\n#c:aminals! #t:cat,tom,ginger! https:\/\/t.co\/yXMY1znZa5",
+        "display_text_range": [
+            0,
+            62
+        ],
+        "source": "<a href=\"http:\/\/twitter.com\/download\/iphone\" rel=\"nofollow\">Twitter for iPhone<\/a>",
+        "truncated": false,
+        "in_reply_to_status_id": null,
+        "in_reply_to_status_id_str": null,
+        "in_reply_to_user_id": null,
+        "in_reply_to_user_id_str": null,
+        "in_reply_to_screen_name": null,
+        "user": {
+            "id": 923506999521931265,
+            "id_str": "923506999521931265",
+            "name": "addcurio RT tests",
+            "screen_name": "addcurioretweet",
+            "location": "London, England",
+            "url": null,
+            "description": "test account for addcurio retweet testing",
+            "translator_type": "none",
+            "protected": false,
+            "verified": false,
+            "followers_count": 54,
+            "friends_count": 2,
+            "listed_count": 0,
+            "favourites_count": 148,
+            "statuses_count": 239,
+            "created_at": "Thu Oct 26 11:10:01 +0000 2017",
+            "utc_offset": null,
+            "time_zone": null,
+            "geo_enabled": false,
+            "lang": null,
+            "contributors_enabled": false,
+            "is_translator": false,
+            "profile_background_color": "000000",
+            "profile_background_image_url": "http:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png",
+            "profile_background_image_url_https": "https:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png",
+            "profile_background_tile": false,
+            "profile_link_color": "ABB8C2",
+            "profile_sidebar_border_color": "000000",
+            "profile_sidebar_fill_color": "000000",
+            "profile_text_color": "000000",
+            "profile_use_background_image": false,
+            "profile_image_url": "http:\/\/pbs.twimg.com\/profile_images\/1311044408423395329\/WWXpoJrr_normal.jpg",
+            "profile_image_url_https": "https:\/\/pbs.twimg.com\/profile_images\/1311044408423395329\/WWXpoJrr_normal.jpg",
+            "profile_banner_url": "https:\/\/pbs.twimg.com\/profile_banners\/923506999521931265\/1601412321",
+            "default_profile": false,
+            "default_profile_image": false,
+            "following": null,
+            "follow_request_sent": null,
+            "notifications": null
+        },
+        "geo": null,
+        "coordinates": null,
+        "place": null,
+        "contributors": null,
+        "is_quote_status": false,
+        "quote_count": 0,
+        "reply_count": 0,
+        "retweet_count": 0,
+        "favorite_count": 0,
+        "entities": {
+            "hashtags": [
+                {
+                    "text": "c",
+                    "indices": [
+                        32,
+                        34
+                    ]
+                },
+                {
+                    "text": "t",
+                    "indices": [
+                        44,
+                        46
+                    ]
+                }
+            ],
+            "urls": [],
+            "user_mentions": [],
+            "symbols": [],
+            "media": [
+                {
+                    "id": 1314616761917071360,
+                    "id_str": "1314616761917071360",
+                    "indices": [
+                        63,
+                        86
+                    ],
+                    "media_url": "http:\/\/pbs.twimg.com\/media\/Ej50-tXXYAAh6zN.jpg",
+                    "media_url_https": "https:\/\/pbs.twimg.com\/media\/Ej50-tXXYAAh6zN.jpg",
+                    "url": "https:\/\/t.co\/yXMY1znZa5",
+                    "display_url": "pic.twitter.com\/yXMY1znZa5",
+                    "expanded_url": "https:\/\/twitter.com\/addcurioretweet\/status\/1314616767298363393\/photo\/1",
+                    "type": "photo",
+                    "sizes": {
+                        "small": {
+                            "w": 680,
+                            "h": 676,
+                            "resize": "fit"
+                        },
+                        "thumb": {
+                            "w": 150,
+                            "h": 150,
+                            "resize": "crop"
+                        },
+                        "medium": {
+                            "w": 1080,
+                            "h": 1074,
+                            "resize": "fit"
+                        },
+                        "large": {
+                            "w": 1080,
+                            "h": 1074,
+                            "resize": "fit"
+                        }
+                    }
+                }
+            ]
+        },
+        "extended_entities": {
+            "media": [
+                {
+                    "id": 1314616761917071360,
+                    "id_str": "1314616761917071360",
+                    "indices": [
+                        63,
+                        86
+                    ],
+                    "media_url": "http:\/\/pbs.twimg.com\/media\/Ej50-tXXYAAh6zN.jpg",
+                    "media_url_https": "https:\/\/pbs.twimg.com\/media\/Ej50-tXXYAAh6zN.jpg",
+                    "url": "https:\/\/t.co\/yXMY1znZa5",
+                    "display_url": "pic.twitter.com\/yXMY1znZa5",
+                    "expanded_url": "https:\/\/twitter.com\/addcurioretweet\/status\/1314616767298363393\/photo\/1",
+                    "type": "photo",
+                    "sizes": {
+                        "small": {
+                            "w": 680,
+                            "h": 676,
+                            "resize": "fit"
+                        },
+                        "thumb": {
+                            "w": 150,
+                            "h": 150,
+                            "resize": "crop"
+                        },
+                        "medium": {
+                            "w": 1080,
+                            "h": 1074,
+                            "resize": "fit"
+                        },
+                        "large": {
+                            "w": 1080,
+                            "h": 1074,
+                            "resize": "fit"
+                        }
+                    }
+                },
+                {
+                    "id": 1314616762164547585,
+                    "id_str": "1314616762164547585",
+                    "indices": [
+                        63,
+                        86
+                    ],
+                    "media_url": "http:\/\/pbs.twimg.com\/media\/Ej50-uSXkAEgVbn.jpg",
+                    "media_url_https": "https:\/\/pbs.twimg.com\/media\/Ej50-uSXkAEgVbn.jpg",
+                    "url": "https:\/\/t.co\/yXMY1znZa5",
+                    "display_url": "pic.twitter.com\/yXMY1znZa5",
+                    "expanded_url": "https:\/\/twitter.com\/addcurioretweet\/status\/1314616767298363393\/photo\/1",
+                    "type": "photo",
+                    "sizes": {
+                        "thumb": {
+                            "w": 150,
+                            "h": 150,
+                            "resize": "crop"
+                        },
+                        "medium": {
+                            "w": 1200,
+                            "h": 900,
+                            "resize": "fit"
+                        },
+                        "large": {
+                            "w": 2048,
+                            "h": 1536,
+                            "resize": "fit"
+                        },
+                        "small": {
+                            "w": 680,
+                            "h": 510,
+                            "resize": "fit"
+                        }
+                    }
+                }
+            ]
+        },
+        "favorited": false,
+        "retweeted": false,
+        "possibly_sensitive": false,
+        "filter_level": "low",
+        "lang": "en"
+    },
+    "quoted_status_permalink": {
+        "url": "https:\/\/t.co\/KV7wZszJ9z",
+        "expanded": "https:\/\/twitter.com\/addcurioretweet\/status\/1314616767298363393",
+        "display": "twitter.com\/addcurioretwee\u2026"
+    },
+    "is_quote_status": true,
+    "quote_count": 0,
+    "reply_count": 0,
+    "retweet_count": 0,
+    "favorite_count": 0,
+    "entities": {
+        "hashtags": [
+            {
+                "text": "test",
+                "indices": [
+                    33,
+                    38
+                ]
+            }
+        ],
+        "urls": [],
+        "user_mentions": [
+            {
+                "screen_name": "addcurio",
+                "name": "Curio",
+                "id": 1184841473965076481,
+                "id_str": "1184841473965076481",
+                "indices": [
+                    0,
+                    9
+                ]
+            }
+        ],
+        "symbols": []
+    },
+    "favorited": false,
+    "retweeted": false,
+    "filter_level": "low",
+    "lang": "en",
+    "timestamp_ms": "1602264143060"
+}

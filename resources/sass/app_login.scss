@@ -1,0 +1,58 @@
+.guest {
+    background: $bg-background;
+    background-repeat:no-repeat;
+    background-size: cover;
+    background-position:center;
+    background-attachment:fixed;
+    background-blend-mode: $bg-blend-mode;  
+    min-height:100vh;
+
+    #main {
+        margin-top:0;
+        background-color: $transparent;
+    }
+}
+
+#login {
+    
+    .overlay {
+        width:100vw;
+        color:$white;
+
+        input {
+           color:$brand-d;
+           background-color:$white;
+           border:0;
+           &[type="text"], &[type="password"]{
+                height: 3rem;
+            }
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+        }
+        .btn-outline-light:hover {
+            color:$white;
+            background-color: $brand-c;
+            border-color:$brand-c;
+            
+            svg.icon-xs,
+            svg.icon-sm,
+            svg.icon-md,
+            svg.icon-lg,
+            svg.icon-xl {
+                path {
+                    fill:$white;
+                }
+            }
+        }
+          
+        .card {
+            background:$transparent;
+            border:0;
+            padding:0;
+            margin:0;
+        }
+    }
+    
+}
