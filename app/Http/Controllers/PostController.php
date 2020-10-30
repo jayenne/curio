@@ -21,10 +21,12 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, $order = null)
     {
+        // dd($order, $request);
         //inRandomOrder('1234')->
         $paginator = Post::currentStatus('public')
+            ->inRandomOrder('1234')
             ->withCount(['boards','subscriptions'])
             ->paginate(config('platform.pagination.posts'));
         

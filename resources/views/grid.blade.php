@@ -14,9 +14,10 @@
 @include("navigation.board_edit")
 
 	<div class="container-fluid position-relative d-flex flex-column">
+        
         <div id="grid" data-filters="" data-url="{{ $path ?? config('platform.fallback.grid.path') }}{{ @request()->route()->parameters['id'] ?? null }}" data-index="{{ @request()->route()->parameters['id'] ?? null }}" data-empty="{{ @request()->route()->parameters['name'] ?? null }}" class="grid">
-	        
-	  	</div>
+            <div class="grid-sizer"></div>
+        </div>
 
         <div class="loader">
             <div class="inner">

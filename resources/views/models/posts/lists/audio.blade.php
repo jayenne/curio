@@ -11,15 +11,13 @@
             @endif
             
             <div class="mt-4 pt-3 d-flex flex-column flex-justify-content-start">
-             <button class="py-2 btn btn-link btn-icon p-0 d-flex flex-column justfify-content-center align-items-center {{ $item['reactions']['totals']['reacted'] ? 'on' : ''}}" data-url="a/r" data-action="love" data-type="post" data-id="{{ $item['id'] }}" data-toggle="tooltip" data-placement="right" title="{{ __('Love') }}" >
-                 <div class="h5 mb-0 text-nowrap text-dark" data-acted="love">{{ $item['reactions']['totals']['count'] }}</div>
-             	<div><span class="mr-1">@svg('buttons/heart-btn', 'icon-xxs brand-m')<small class="ml-1">{{ __("Loves") }}</small></span></div>
-             </button> 
-         </div>
-         <small>{{ $item['type'] }}</small>
-         <small>ID: {{ $item['id'] }}</small>
-         <small data-index="order">Ix: {{ $item['position'] }}</small>
-         </div> 
+                <button class="py-2 btn btn-link btn-icon p-0 d-flex flex-column justfify-content-center align-items-center {{ $item['reactions']['totals']['reacted'] ? 'on' : ''}}" data-url="a/r" data-action="love" data-type="post" data-id="{{ $item['id'] }}" data-toggle="tooltip" data-placement="right" title="{{ __('Love') }}" >
+                    <div class="h5 mb-0 text-nowrap text-dark" data-acted="love">{{ $item['reactions']['totals']['count'] }}</div>
+                 	<div><span class="mr-1">@svg('buttons/heart-btn', 'icon-xxs brand-m')<small class="ml-1">{{ __("Loves") }}</small></span></div>
+                 </button> 
+            </div>
+            @include('models.posts.lists._debug')
+        </div> 
 
         <div class="d-flex flex-column justify-content-start align-items-start w-100">
             

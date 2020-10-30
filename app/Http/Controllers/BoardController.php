@@ -94,9 +94,8 @@ class BoardController extends Controller
             ->withCount(['posts'])
             ->paginate(config('platform.pagination.boards'))
             ->appends(request()->query());
-       
+
         if ($models->isNotEmpty()) {
-            //$this->logView($models);
             $collection = $models->getCollection();
             $resource = \Fractal::collection($collection)
             ->parseIncludes(['user'])
@@ -112,7 +111,7 @@ class BoardController extends Controller
                 $view = $prefix.$file;
                 $resource = view($view)->with('data', $resource['data'])->render();
             }
-            
+            $this->logView($models);
             return $resource;
         }
 
@@ -131,7 +130,7 @@ class BoardController extends Controller
     {
         // IF CALLING USER THEN CHECK USER EXISTS
         $auth_id = Auth::id();
-        $models = QueryBuilder::for(Board::class)
+        $model = QueryBuilder::for(Board::class)
             ->whereId($id)
             ->has('posts')
             ->defaultSort('-created_at')
@@ -160,15 +159,17 @@ class BoardController extends Controller
             ->paginate(config('platform.pagination.boards'))
             ->appends(request()->query());
         
-        if ($models->isNotEmpty()) {
-            $resource = \Fractal::collection($models)
-            ->parseIncludes(['user', 'posts', 'post_count', 'reactions', 'tags', 'post_media'])
+        if ($model->isNotEmpty()) {
+            $resource = \Fractal::collection($model)
+            ->parseIncludes(['user', 'posts', 'posts.user', 'post_count', 'reactions', 'tags', 'post_media'])
             ->transformWith(new BoardTransformer)
             ->toArray();
+
+            //dd($resource);
             // IF IS AJAX REQUEST FROM FRONTEND
             if ($request->ajax()) {
-                $prefix = 'models.boards.lists.';
-                $file = 'posts';
+                $prefix = 'models.boards.';
+                $file = 'wrapper';
                 $view = $prefix.$file;
                 $data = $resource['data'][0]['posts']['data'];
                 
@@ -262,19 +263,23 @@ class BoardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function reindex(Request $request, $id)
+    public function reindex(Request $request)
     {
         $user = Auth::user();
-        $data = Board::find($request->board_id);
-        if (empty($data)) {
-            return response()->json(array('success' => false), 404);
+        $board = Board::find($request->id);
+        $positions = json_decode($request->positions, true);
+
+        if (empty($board)) {
+            return response()->json(array('success' => false), 204);
         }
 
-        foreach ($request->order as $key => $val) {
-            $data->posts()->where('post_id', $val)->update(['board_post.index' => $key]);
+        foreach ($positions as $key => $val) {
+            $board->posts()
+                ->where('post_id', $val['i'])
+                ->update(['board_post.index' => $key,'board_post.position' => $val['x']]);
         }
        
-        return response()->json(array('success' => true, 'data' => $data), 202);
+        return response()->json(['success' => true, 'board' => $board, 'positions' => $positions], 202);
     }
     /**
      * Get the index name for the model.

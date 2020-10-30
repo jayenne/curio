@@ -20,9 +20,8 @@
                     <div><span class="mr-1">@svg('buttons/heart-btn', 'icon-xxs brand-m')<small class="ml-1">{{ __("Loves") }}</small></span></div>
                 </button> 
             </div>
-            <small>{{ $item['type'] }}</small>
-            <small>ID: {{ $item['id'] }}</small>
-            <small data-index="order">Ix: {{ $item['position'] }}</small>
+            @include('models.posts.lists._debug')
+
         </div> 
 
         <div class="d-flex flex-column justify-content-start align-items-start w-100">

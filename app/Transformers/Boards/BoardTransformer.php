@@ -8,7 +8,8 @@ use App\Board;
 use Spatie\Tags\Tag;
 
 use App\Transformers\Users\UserTransformer;
-use App\Transformers\Boards\BoardPostTransformer;
+//use App\Transformers\Boards\BoardPostTransformer;
+use App\Transformers\Posts\PostTransformer;
 
 use App\Transformers\ReactionTransformer;
 use App\Transformers\SubscriptionTransformer;
@@ -81,6 +82,7 @@ class BoardTransformer extends TransformerAbstract
                 'updated' => $model->updated_at->format('Y-m-d H:i:s'),
                 'updated_string' => \Carbon\Carbon::parse($model->updated_at)->diffForHumans(),
             ],
+            'user' => $model->user ?? null,
             //'posts' => null,//$model->posts->take($posts_limit),
         ];
     }

@@ -17,7 +17,8 @@ class CreateBoardPostTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('board_id');
             $table->unsignedBigInteger('post_id');
-            $table->unsignedInteger('index');
+            $table->unsignedSmallInteger('index');
+            $table->decimal('position', 4, 3);
             $table->timestamps();
         });
     }

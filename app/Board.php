@@ -63,7 +63,7 @@ class Board extends Model implements ReactableContract, HasMedia
 
     public function posts()
     {
-        return $this->belongsToMany(Post::class)->withPivot('index')->orderBy('board_post.index')->withCount('boards');
+        return $this->belongsToMany(Post::class)->withPivot('index', 'position')->orderBy('board_post.index')->withCount('boards');
     }
 
     public function isSubscriber()

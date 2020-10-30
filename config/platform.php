@@ -54,6 +54,7 @@ return [
             'themes' => [
                 'default' => 'default',
                 'options' => [
+                    'default',
                     'newspaper',
                     'stickies',
                     'chalkoard',

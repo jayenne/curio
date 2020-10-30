@@ -98,10 +98,11 @@ Route::group(['middleware' => ['auth:sanctum','verified']], function () {
 
         //Route::post('/c', 'BoardController@new')->name('new');
         Route::get('/', 'BoardController@index')->name('index');
-        Route::post('/ri/{id}', 'BoardController@reindex')->name('reindex');
         Route::post('/', 'BoardController@store')->name('create');
         Route::patch('/', 'BoardController@update')->name('update');
         Route::delete('/', 'BoardController@destroy')->name('destroy');
+        Route::post('/ri', 'BoardController@reindex')->name('reindex');
+
         //Route::put('/{id}', 'BoardController@update');
         //Route::patch('/{id}', 'BoardController@update');
     });
@@ -109,8 +110,9 @@ Route::group(['middleware' => ['auth:sanctum','verified']], function () {
     //POSTS
     Route::name('api.posts.')->prefix('p')->group(function () {
         Route::get('me', 'PostController@indexMe')->name('me');
-        Route::get('{id}', 'PostController@show')->name('id');
+        Route::get('o/{order}', 'PostController@index');
         Route::get('/', 'PostController@index')->name('all');
+        Route::get('{id}', 'PostController@show')->name('id');
 
         //Route::post('/', 'PostController@store');
         //Route::put('/{id}', 'PostController@update');

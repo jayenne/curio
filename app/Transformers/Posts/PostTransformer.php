@@ -53,30 +53,34 @@ class PostTransformer extends TransformerAbstract
             'prid' => (int) $model->love_reactant_id,
             'puid' => (int) $model->user->id,
             'purid' => (int) $model->user->love_reactant_id,
-            'position' => $model->pivot->index ?? 0,
+            'position' => [
+                'index' => $model->pivot->index ?? null,
+                'x' => $model->pivot->position ?? 0.0,
+            ],
             'created_by' => (int) $model->user_id,
             'title' => ucfirst($model->title),
             'body' => ucfirst($model->text),
             'type' => $this->typemap($model->type ?? 'text'),
             'theme' => $model->theme,
+            'board_width' => 100/3,
             'notes' => ucfirst($model->notes),
             'language' => $model->lang,
             'source' => [
                 'name' => $model->source_platform_id,
                 'icon' => ['sources/'.$model->source_platform_id,'icons/source-default'],
                 'url' => $model->source_permalink,
-            ],
-            'sensitive' => $model->sensitive,
-            'members' => (int) $model->public,
-            'posted_at' => $model->posted_at,
+                ],
+                'sensitive' => $model->sensitive,
+                'members' => (int) $model->public,
+                'posted_at' => $model->posted_at,
             
             //USER
-            'is_subscribed' => \Auth::User()->hasSubscribed($model),
+                'is_subscribed' => \Auth::User()->hasSubscribed($model),
 
             //COUNTS
-            'boards_count' => $model->boards_count,
-            'subscribers_count' => $model->subscribers()->count(),
-            'status' => [
+                'boards_count' => $model->boards_count,
+                'subscribers_count' => $model->subscribers()->count(),
+                'status' => [
                 'name' => $model->status,
                 'reason' => $model->status()->reason ?? null,
                 'online' => [
@@ -86,8 +90,8 @@ class PostTransformer extends TransformerAbstract
                     'last_action_string' => \Carbon\Carbon::parse($model->active_at)->diffForHumans(),
                 ],
     
-            ],
-        ];
+                ],
+            ];
     }
 
     /*-------- OPTIONALS --------*/

@@ -285,58 +285,97 @@ $(document).ready(function () {
   var griditem = '.grid-item';
   var status = '.loader';
   var draggies = [];
-  var isDrag = false;
+  var isDrag = false; // get JSON-friendly data for items positions
 
-  function saveItems(sortOrder) {
-    var index = $grid.data('index');
-    console.log('Saving', sortOrder, 'board', index);
-    $.ajax({
-      url: '/api/b/ri/' + index,
-      type: 'POST',
-      data: {
-        order: sortOrder,
-        board_id: index
-      },
-      success: function success(response) {
-        console.log('AJAX RESULT', response);
+  Packery.prototype.getShiftPositions = function (attrName) {
+    attrName = attrName || 'id';
+
+    var _this = this;
+
+    return this.items.map(function (item) {
+      return {
+        i: item.element.getAttribute(attrName),
+        x: item.rect.x / _this.packer.width
+      };
+    });
+  };
+
+  Packery.prototype.initShiftLayout = function (positions, attr) {
+    if (!positions) {
+      // if no initial positions, run packery layout
+      this.layout();
+      return;
+    } // parse string to JSON
+
+
+    if (typeof positions == 'string') {
+      try {
+        positions = JSON.parse(positions);
+      } catch (error) {
+        console.error('JSON parse error: ' + error);
+        this.layout();
+        return;
       }
-    });
-  }
+    }
 
-  function orderItems() {
-    var itemElems = $grid.packery('getItemElements');
-    var order = [];
-    $(itemElems).each(function (i, itemElem) {
-      order.push($(itemElem).attr('tabindex'));
-    });
-    console.log('Ordering', order);
-    return order;
+    attr = attr || 'id'; // default to id attribute
+
+    this._resetLayout(); // set item order and horizontal position from saved positions
+
+
+    this.items = positions.map(function (itemPosition) {
+      console.log('itemPosition', itemPosition);
+      var selector = '[' + attr + '="' + itemPosition.i + '"]';
+      var itemElem = this.element.querySelector(selector);
+      var item = this.getItem(itemElem);
+      item.rect.x = itemPosition.x * this.packer.width;
+      return item;
+    }, this);
+    this.shiftLayout();
+  };
+
+  function savePositions() {
+    var board_id = $grid.data('index');
+    var positions = localStorage.getItem('dragPositions');
+
+    if (board_id) {
+      $.ajax({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: '/api/b/ri',
+        type: 'POST',
+        data: {
+          id: board_id,
+          positions: positions
+        },
+        success: function success(response) {
+          console.log('AJAX RESULT', response);
+        }
+      });
+    }
   } //PACKERY
 
 
   $(function () {
-    $grid.packery({});
-    $grid.packery('on', 'layoutComplete', function () {
-      console.log('layout is complete');
-    });
-    $grid.on('dragItemPositioned', function (event, draggeditem) {
-      console.log('packery position'); //$grid.layout();
+    $grid.packery({
+      columnWidth: '.grid-sizer',
+      percentPosition: true
     });
   }); //fit layout for expanding items
+  // $grid.on( 'click', griditem, function( event ) {
+  //   var $item = $( event.currentTarget );
+  //   // change size of item by toggling large class
+  //   $item.toggleClass('col-md-8');
+  //   if ( $item.is('.col-md-8') ) {
+  //     // fit large item
+  //     $grid.packery( 'fit', event.currentTarget );
+  //   } else {
+  //     // back to small, shiftLayout back
+  //     $grid.packery('shiftLayout');
+  //   }
+  // });
 
-  $grid.on('click', griditem, function (event) {
-    var $item = $(event.currentTarget); // change size of item by toggling large class
-
-    $item.toggleClass('col-md-8');
-
-    if ($item.is('.col-md-8')) {
-      // fit large item
-      $grid.packery('fit', event.currentTarget);
-    } else {
-      // back to small, shiftLayout back
-      $grid.packery('shiftLayout');
-    }
-  });
   $('.toggle-drag-button').on('click', function (e) {
     var method = isDrag ? 'disable' : 'enable';
     draggies.forEach(function (draggie) {
@@ -353,10 +392,7 @@ $(document).ready(function () {
     $(this).attr('data-toggletext', t); // action
 
     if (isDrag == false) {
-      var o = orderItems();
-      saveItems(o);
-      console.log('saving order', o);
-    } else {//$grid.packery();
+      savePositions();
     }
   });
 
@@ -364,21 +400,15 @@ $(document).ready(function () {
     var counter = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
     var timeout = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 3;
     // init Infinte Scroll
-    var url = $grid.data('url'); // SORTING
-
-    var sortString = ''; //var sortString = '&sort=random';
-    // FILTERING
-
-    var filterString = ''; //filterString = filterString.concat('&filter[user]=1');
-    //filterString = filterString.concat('&filter[test]=true');
-    //console.log('filterstring: '+filterString);
-
+    //localStorage.removeItem('dragPositions');
+    var url = $grid.data('url');
     url.substring(0, 1) == '/' ? url : url = '/' + url;
+    var sortString = '';
+    var filterString = '';
     $grid.infiniteScroll({
       path: function path() {
         var pageNumber = this.loadCount + 1;
-        var p = '/api' + url + '?page=' + pageNumber + filterString + sortString;
-        return p;
+        return '/api' + url + '?page=' + pageNumber + filterString + sortString;
       },
       checkLastPage: false,
       scrollThreshold: 0,
@@ -388,47 +418,50 @@ $(document).ready(function () {
     $grid.infiniteScroll('loadNextPage');
   }
 
-  $grid.on('append.infiniteScroll', function (event, response, path, items) {
-    console.log('Appended now');
-  });
-  $grid.on('scrollThreshold.infiniteScroll', function (event) {
-    console.log('Scroll threshold has been met');
-  });
-  $grid.on('request.infiniteScroll', function (event, path) {
-    console.log('Requesting page: ' + path);
-  });
   $grid.on('load.infiniteScroll', function (event, response, path) {
-    console.log('Loaded: ' + path);
     var viewmode =  true ? $grid.attr('data-layout') : undefined;
-    var $items = $(response).find('.grid-item'); // layout Packery after each image loads
+    var $items = $(response).find('.grid-item');
+    localStorage.removeItem('dragPositions'); //make draggable. initially disabled
 
+    var positions = [];
     $items.each(function (i, gridItem) {
       var draggie = new Draggabilly(gridItem);
       draggie.disable();
-      draggies.push(draggie); // bind drag events to Packery
-
+      draggies.push(draggie);
       $grid.packery('bindDraggabillyEvents', draggie);
+      var index = gridItem.getAttribute('data-index');
+      var x = gridItem.getAttribute('data-position');
+      positions[i] = {
+        'i': index,
+        'x': x
+      };
     });
-    $grid.append($items).packery('appended', $items);
-    $grid.imagesLoaded().progress(function () {//$grid.packery();
-    });
+    $grid.append($items).packery('appended', $items); // set positons
+
+    $grid.packery('initShiftLayout', positions, 'data-index'); //$grid.packery();
+    // $grid.imagesLoaded().progress( function() {});
+
     var gifs = new freezeframe__WEBPACK_IMPORTED_MODULE_0___default.a('.freezeframe', {
       overlay: true
     }); // const vplayers = Array.from(document.querySelectorAll('video')).map(p => new Plyr(p));
     // const aplayers = Array.from(document.querySelectorAll('audio')).map(p => new Plyr(p));
     // window.vplayers = vplayers;
     // window.aplayers = aplayers;
+  });
+  $grid.on('dragItemPositioned', function () {
+    // save drag positions 
+    var positions = $grid.packery('getShiftPositions', 'data-index');
+    localStorage.setItem('dragPositions', JSON.stringify(positions)); //$grid.packery();
   }); //LAST PAGE
-
-  $grid.on('last.infiniteScroll', function (event, response, path) {
-    console.log('Loaded Last: ' + path);
-  }); //EMPTY
+  // $grid.on( 'last.infiniteScroll', function( event, response, path ) {
+  //   console.log( 'Loaded Last: ' + path );
+  // });
+  //EMPTY
 
   $grid.on('error.infiniteScroll', function (event, error, path) {
     //split path on ? then append 'create'
-    console.log('Error Loading: '); // console.log('Path: ', path );
-
-    console.log(error); // console.log('404 Event: ', event  );
+    console.log('Error Loading: ', error); // console.log('Path: ', path );
+    // console.log('404 Event: ', event  );
 
     $('.loader').addClass('footer');
     var msg = error.toString().replace('Error: ', '');

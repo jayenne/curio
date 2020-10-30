@@ -15346,13 +15346,6 @@ nav svg.ais-SearchBox-submitIcon {
 
 #grid-nav li.nav-link.active .btn-link {
   color: #fff !important;
-  font-weight: bold !important;
-  font-style: italic !important;
-}
-
-.grid {
-  min-height: 50vh;
-  margin-bottom: 5rem;
 }
 
 .ff-overlay {
@@ -15479,6 +15472,17 @@ nav svg.ais-SearchBox-submitIcon {
   padding: 1rem;
 }
 
+.grid:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.grid-item,
+.grid-sizer {
+  width: 33.3%;
+}
+
 .grid-load-status {
   display: none;
   position: fixed;
@@ -15500,15 +15504,15 @@ nav svg.ais-SearchBox-submitIcon {
   cursor: move;
 }
 
+.grid-item {
+  float: left;
+}
+
 .grid-item a:hover,
 .grid-item btn:hover,
 .grid-item [data-to]:hover,
 .grid-item [data-target="#modal-griditem"]:hover {
   cursor: pointer;
-}
-
-.grid-item.grid-item--large {
-  width: 200%;
 }
 
 .grid-item.layout-fitRows .card-copy .card-text {
@@ -15584,7 +15588,7 @@ nav svg.ais-SearchBox-submitIcon {
 }
 
 .grid-item .card .card-img-top img.of-6 {
-  width: 33.33%;
+  width: 33.333333%;
   height: 138px;
   border-bottom: 1px solid #fff;
 }

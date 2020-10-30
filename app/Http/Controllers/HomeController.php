@@ -14,6 +14,6 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return view('grid');
+        return view('grid', ['path' => '/p/o/random']);
     }
 }
