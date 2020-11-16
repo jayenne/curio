@@ -2,8 +2,8 @@
 
 namespace App\Transformers\Users;
 
-use Spatie\Permission\Models\Permission;
 use League\Fractal\TransformerAbstract;
+use Spatie\Permission\Models\Permission;
 
 /**
  * Class PermissionTransformer.

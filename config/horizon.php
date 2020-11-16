@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Support\Str;
 
 return [
@@ -167,7 +168,7 @@ return [
         'production' => [
             'supervisor-1' => [
                 'connection' => 'redis',
-                'queue' => ['default','post','media','addcurio','tweet_response','tweet_destroy'],
+                'queue' => ['default', 'post', 'media', 'addcurio', 'tweet_response', 'tweet_destroy'],
                 'balance' => 'simple',
                 'processes' => 10,
                 'tries' => 1,
@@ -177,7 +178,7 @@ return [
         'local' => [
             'supervisor-1' => [
                 'connection' => 'redis',
-                'queue' => ['default','post','media','addcurio','tweet_response','tweet_destroy'],
+                'queue' => ['default', 'post', 'media', 'addcurio', 'tweet_response', 'tweet_destroy'],
                 'balance' => 'simple',
                 'processes' => 1,
                 'tries' => 1,

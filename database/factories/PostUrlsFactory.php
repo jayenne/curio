@@ -1,20 +1,36 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
 use App\PostUrls;
-use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(PostUrls::class, function (Faker $faker) {
-    return [
-        'url' => $faker->url,
-        'site' => '',
-        'title' => '',
-        'body' => '',
-        'image' => '',
-        'alt' => '',
-        'locale' => '',
-        'type' => '',
-        'opengraph' => ''
-    ];
-});
+class PostUrlsFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = PostUrls::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'url' => $this->faker->url,
+            'site' => '',
+            'title' => '',
+            'body' => '',
+            'image' => '',
+            'alt' => '',
+            'locale' => '',
+            'type' => '',
+            'opengraph' => '',
+        ];
+    }
+}

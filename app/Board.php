@@ -2,31 +2,28 @@
 
 namespace App;
 
+use App\Post;
+use App\User;
+use Cog\Contracts\Love\Reactable\Models\Reactable as ReactableContract;
+use Cog\Laravel\Love\Reactable\Models\Traits\Reactable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
-
-use Spatie\Tags\HasTags;
-use Spatie\ModelStatus\HasStatuses;
-
+use Overtrue\LaravelSubscribe\Traits\Subscribable;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
-use Spatie\Activitylog\Traits\LogsActivity;
-
-use Cog\Contracts\Love\Reactable\Models\Reactable as ReactableContract;
-use Cog\Laravel\Love\Reactable\Models\Traits\Reactable;
-
-use Overtrue\LaravelSubscribe\Traits\Subscribable;
-
-use App\User;
-use App\Post;
+use Spatie\ModelStatus\HasStatuses;
+use Spatie\Tags\HasTags;
 
 //use Laravel\Scout\Searchable;
 
 class Board extends Model implements ReactableContract, HasMedia
 {
+    use HasFactory;
     use SoftDeletes,
         Searchable,
         Reactable,
@@ -43,7 +40,7 @@ class Board extends Model implements ReactableContract, HasMedia
      * @var array
      */
     protected $fillable = [
-        'user_id', 'slug', 'title', 'body', 'sensitive', 'tags', 'theme', 'layout', 'direction', 'columns', 'posts_limit'
+        'user_id', 'slug', 'title', 'body', 'sensitive', 'tags', 'theme', 'layout', 'direction', 'columns', 'posts_limit',
     ];
 
     /**
@@ -55,7 +52,7 @@ class Board extends Model implements ReactableContract, HasMedia
     {
         return 'slug';
     }
-    
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -70,24 +67,25 @@ class Board extends Model implements ReactableContract, HasMedia
     {
         return $this->subscribers();
     }
-    
+
     // Setup Algolia
     public function searchableAs()
     {
         return 'boards_index';
     }
-    
+
     public function toSearchableArray()
     {
         $array = $this->toArray();
+
         return $array;
     }
-    
+
     public function getScoutKey()
     {
         return $this->id;
     }
-    
+
     public function getScoutKeyName()
     {
         return 'id';

@@ -40,6 +40,6 @@ class FlushRedis extends Command
     {
         //
         Redis::command('flushdb');
-        $this->info("All Redis jobs deleted successfully!");
+        $this->info('All Redis jobs deleted successfully!');
     }
 }

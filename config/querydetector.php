@@ -6,7 +6,7 @@ return [
      * If this is set to "null", the app.debug config value will be used.
      */
     'enabled' => env('QUERY_DETECTOR_ENABLED', false),
-    
+
     /*
      * Threshold level for the N+1 query detection. If a relation query will be
      * executed more then this amount, the detector will notify you about it.
@@ -58,5 +58,5 @@ return [
     'output' => [
         \BeyondCode\QueryDetector\Outputs\Alert::class,
         \BeyondCode\QueryDetector\Outputs\Log::class,
-    ]
+    ],
 ];

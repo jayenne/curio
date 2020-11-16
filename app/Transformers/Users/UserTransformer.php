@@ -2,22 +2,19 @@
 
 namespace App\Transformers\Users;
 
+use App\Transformers\MediaTransformer;
+use App\Transformers\ReactionTransformer;
+use App\Transformers\TagTransformer;
+use App\Transformers\Users\FollowTransformer;
+use App\Transformers\Users\SubscriptionTransformer;
 use App\User;
 use App\UserProfile;
 use App\UserSocial;
-
-use Spatie\Tags\Tag;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
-
 use Jayenne\LaravelLocaleHero\LocaleHero;
-
 use League\Fractal\TransformerAbstract;
-use App\Transformers\Users\FollowTransformer;
-use App\Transformers\ReactionTransformer;
-use App\Transformers\Users\SubscriptionTransformer;
-use App\Transformers\TagTransformer;
-use App\Transformers\MediaTransformer;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+use Spatie\Tags\Tag;
 
 /**
  * Class UserTransformer.
@@ -28,14 +25,15 @@ class UserTransformer extends TransformerAbstract
         'profile',
         'reactions',
         'follows',
-        'subscriptions'
+        'subscriptions',
         // 'socials'
     ];
-    
+
     protected $availableIncludes = [
         'roles',
-        'permissions'
+        'permissions',
     ];
+
     /**
      * @param User $model
      * @return array
@@ -82,7 +80,7 @@ class UserTransformer extends TransformerAbstract
                     'last_action' => $model->active_at,
                     'last_action_string' => \Carbon\Carbon::parse($model->active_at)->diffForHumans(),
                 ],
-    
+
             ],
             //'created_at' => $model->created_at->toIso8601String(),
             //'updated_at' => $model->updated_at->toIso8601String(),
@@ -92,12 +90,14 @@ class UserTransformer extends TransformerAbstract
     public function includeRoles(User $user)
     {
         $data = new Role;
+
         return $this->item($data, new RoleTransformer);
     }
 
     public function includePermissions(User $user)
     {
         $data = new Permission;
+
         return $this->item($data, new PermissionTransformer);
     }
 
@@ -125,7 +125,7 @@ class UserTransformer extends TransformerAbstract
     {
         return $this->item($model, new FollowTransformer);
     }
-    
+
     public function includeSubscriptions(User $model)
     {
         return $this->item($model, new SubscriptionTransformer);

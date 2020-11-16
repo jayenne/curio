@@ -34,7 +34,7 @@ class CreateUserSocialsTable extends Migration
             $table->boolean('destroy')->nullable()->default(true);
             $table->enum('status', $status['options'])->default($status['default']);
             $table->timestamps();
-            
+
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
@@ -47,9 +47,9 @@ class CreateUserSocialsTable extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        
+
         Schema::dropIfExists('user_socials');
-        
+
         Schema::enableForeignKeyConstraints();
     }
 }

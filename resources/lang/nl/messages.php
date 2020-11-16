@@ -11,5 +11,5 @@ return [
     |
     */
     'no_posts' => 'There are no posts on this board',
-	'last_page' => 'Thats your lot on this board',
+    'last_page' => 'Thats your lot on this board',
 ];

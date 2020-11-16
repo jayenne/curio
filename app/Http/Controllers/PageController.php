@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use GrahamCampbell\Markdown\Facades\Markdown;
+use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
@@ -21,7 +21,6 @@ class PageController extends Controller
             abort(404, 'view not found');
         }
 
-        
         return $resource;
     }
 }

@@ -1,14 +1,14 @@
 <?php
+
 namespace App\Helpers\CuriousPeople;
 
 class CuriousUrl
 {
-    
-// GENERATE / PARSE TEXT
+    // GENERATE / PARSE TEXT
 
     /**
      * Generate a random string, using a cryptographically secure
-     * pseudorandom number generator (random_int)
+     * pseudorandom number generator (random_int).
      * @param int $length      How many characters do we want?
      * @param string $keyspace A string of all possible characters to select from
      * @return string
@@ -35,14 +35,17 @@ class CuriousUrl
 
         $url = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
         curl_close($ch);
+
         return $url;
     }
-    
+
     public static function getHttpResponseCode($url)
     {
         $headers = get_headers($url);
+
         return substr($headers[0], 9, 3);
     }
+
     public static function checkRemoteFile($url)
     {
         $ch = curl_init();

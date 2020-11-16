@@ -1,18 +1,18 @@
 <?php
+
 namespace App\Helpers\CuriousPeople;
 
 use Illuminate\Support\Str;
 
 class CuriousImg
 {
-    
-// GENERATE / PARSE TEXT
+    // GENERATE / PARSE TEXT
 
     /**
-     * [makeImgGrid description]
+     * [makeImgGrid description].
      * @param  [type]  $src    [description]
-     * @param  integer $width  [description]
-     * @param  integer $height [description]
+     * @param  int $width  [description]
+     * @param  int $height [description]
      * @return [type]          [description]
      */
     public static function file_get_contents_curl($url)
@@ -34,7 +34,7 @@ class CuriousImg
         $data = self::file_get_contents_curl($src);
         \Log::channel('dev')->info(['IMG_GRID' => $data, 'URL' => $src]);
         if (empty($data)) {
-            return [null,null];
+            return [null, null];
         }
 
         $img = imagecreatefromstring($data);
@@ -51,14 +51,15 @@ class CuriousImg
             imagedestroy($img);
         }
         $storage = 'storage/';
-        return [$file,$storage.$path.$name.$ext];
+
+        return [$file, $storage.$path.$name.$ext];
     }
 
     /**
-     * [getImgThemeColor description]
+     * [getImgThemeColor description].
      * @param  [type]  $src [description]
-     * @param  integer $x   [description]
-     * @param  integer $y   [description]
+     * @param  int $x   [description]
+     * @param  int $y   [description]
      * @return [type]       [description]
      */
     public static function getImgPixelBrightness($src, $x = 2, $y = 2)
@@ -78,6 +79,7 @@ class CuriousImg
 
             return $brightness;
         }
+
         return false;
     }
 
@@ -85,7 +87,7 @@ class CuriousImg
     {
         $img = file_get_contents($src);
         $img = imagecreatefromstring($img);
-        
+
         $w = imagesx($img);
         $x = $col > $w ? $w : $col;
         $h = imagesy($img);
@@ -101,15 +103,16 @@ class CuriousImg
             $b = $rgb & 0xFF;
             $hsv = self::RGBtoHSV($r, $g, $b);
             $brightness += $hsv['v'];
-            $divisor ++;
+            $divisor++;
         }
         imagedestroy($img);
         $result = $brightness / $divisor;
+
         return $result;
     }
-    
+
     /**
-     * [getAverageColor description]
+     * [getAverageColor description].
      * @param  [type] $src [description]
      * @return [type]      [description]
      */
@@ -134,41 +137,43 @@ class CuriousImg
         $g = dechex(round($g / $pxls));
         $b = dechex(round($b / $pxls));
         if (strlen($r) < 2) {
-            $r = 0 . $r;
+            $r = 0 .$r;
         }
         if (strlen($g) < 2) {
-            $g = 0 . $g;
+            $g = 0 .$g;
         }
         if (strlen($b) < 2) {
-            $b = 0 . $b;
+            $b = 0 .$b;
         }
-        return '#'.$r . $g . $b;
+
+        return '#'.$r.$g.$b;
     }
 
     /**
-     * [RGBtoHSV description]
+     * [RGBtoHSV description].
      * @param [type] $r [description]
      * @param [type] $g [description]
      * @param [type] $b [description]
      */
     private static function RGBtoHSV($r, $g, $b)
     {
-        $r=($r/255);
-        $g=($g/255);
-        $b=($b/255);
-        $maxRGB=max($r, $g, $b);
-        $minRGB=min($r, $g, $b);
-        $chroma=$maxRGB-$minRGB;
-        if ($chroma==0) {
-            return array('h'=>0,'s'=>0,'v'=>$maxRGB);
+        $r = ($r / 255);
+        $g = ($g / 255);
+        $b = ($b / 255);
+        $maxRGB = max($r, $g, $b);
+        $minRGB = min($r, $g, $b);
+        $chroma = $maxRGB - $minRGB;
+        if ($chroma == 0) {
+            return ['h'=>0, 's'=>0, 'v'=>$maxRGB];
         }
-        if ($r==$minRGB) {
-            $h=3-(($g-$b)/$chroma);
-        } elseif ($b==$minRGB) {
-            $h=1-(($r-$g)/$chroma);
+        if ($r == $minRGB) {
+            $h = 3 - (($g - $b) / $chroma);
+        } elseif ($b == $minRGB) {
+            $h = 1 - (($r - $g) / $chroma);
         } else {
-            $h=5-(($b-$r)/$chroma);
+            $h = 5 - (($b - $r) / $chroma);
         }
-        return array('h'=>60*$h,'s'=>$chroma/$maxRGB,'v'=>$maxRGB);
+
+        return ['h'=>60 * $h, 's'=>$chroma / $maxRGB, 'v'=>$maxRGB];
     }
 }

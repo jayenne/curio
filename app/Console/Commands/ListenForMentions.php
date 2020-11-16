@@ -2,10 +2,10 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-use TwitterStreamingApi;
-use Illuminate\Foundation\Bus\DispatchesJobs;
 use App\Jobs\ProcessTweet;
+use Illuminate\Console\Command;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use TwitterStreamingApi;
 
 class ListenForMentions extends Command
 {

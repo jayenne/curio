@@ -4,8 +4,8 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Schema;
 
 class FlushSessions extends Command
 {
@@ -42,8 +42,7 @@ class FlushSessions extends Command
     {
         $driver = $this->option('driver') ?: config('session.driver');
 
-        switch ($driver)
-        {
+        switch ($driver) {
             case 'database': $this->flushDB();
                 break;
             case 'file': $this->flushFile();
@@ -63,20 +62,18 @@ class FlushSessions extends Command
         } else {
             error_log($table.' table does not exist');
         }
-        return;
     }
-     
+
     private function flushFile()
     {
         $path = config('session.files');
-        
+
         if (File::exists($path)) {
-            $files =   File::allFiles($path);
+            $files = File::allFiles($path);
             File::delete($files);
-            error_log( count($files).' sessions flushed');
+            error_log(count($files).' sessions flushed');
         } else {
             error_log('check your session path exists');
         }
     }
-
 }

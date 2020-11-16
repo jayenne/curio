@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Requests\StoreUserRequest;
-use Illuminate\Routing\Controller;
-
-use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 use App\Transformers\Users\UserTransformer;
-
-use Auth;
 use App\User;
-use Carbon\Carbon;
+use Auth;
 use Cache;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 
 /**
  * @group User management
@@ -21,16 +19,15 @@ use Cache;
  */
 class UserController extends Controller
 {
-
     /**
-    * Show all users.
-    * @group Users
-    * @return Response
-    */
+     * Show all users.
+     * @group Users
+     * @return Response
+     */
     public function index(Request $request)
     {
         $paginator = User::currentStatus('public')
-            ->withCount(['boards','posts', 'subscriptions'])
+            ->withCount(['boards', 'posts', 'subscriptions'])
             ->paginate(config('platform.pagination.user'));
 
         $model = $paginator->getCollection();
@@ -51,15 +48,16 @@ class UserController extends Controller
             $view = $prefix.$context.$seperator.$type;
             $resource = view($view)->with('data', $resource['data'])->render();
         }
+
         return $resource;
     }
 
     /**
-    * Show user by given ID.
-    * @group Users
-    * @param int $id
-    * @return Response
-    */
+     * Show user by given ID.
+     * @group Users
+     * @param int $id
+     * @return Response
+     */
     public function show(Request $request, $id)
     {
         $models = User::whereId([$id])
@@ -78,7 +76,7 @@ class UserController extends Controller
             'profile',
             'reactions',
             'follows',
-            'subscriptions'
+            'subscriptions',
         ])
         ->transformWith(new UserTransformer)
         ->toArray();
@@ -91,15 +89,16 @@ class UserController extends Controller
             $view = $prefix.$context.$seperator.$type;
             $resource = view($view)->with('item', $resource['data'][0])->render();
         }
+
         return $resource;
     }
- 
+
     /**
-    * Store user to datsabase by post form.
-    * @group Users
-    * @param form
-    * @return Response
-    */
+     * Store user to datsabase by post form.
+     * @group Users
+     * @param form
+     * @return Response
+     */
     public function store(StoreUserRequest $request)
     {
         $user = User::where(['email' => $request->email])->first();
@@ -108,10 +107,11 @@ class UserController extends Controller
         }
 
         $data = User::Create($request->all());
+
         return $this->response->item($data, new UserTransformer)
             ->setStatusCode(201);
     }
- 
+
     /**
      * Update the specified resource in storage.
      * @group Users
@@ -122,8 +122,10 @@ class UserController extends Controller
     {
         $data = User::findOrFail($request->id);
         $data->update($request->all());
+
         return response()->json($data, 202);
     }
+
     /**
      * Remove the specified post.
      * @group Users
@@ -135,21 +137,22 @@ class UserController extends Controller
     {
         $data = User::findOrFail($id);
         $data->delete();
+
         return $this->response->noContent();
     }
 
-   
     /**
-      * Log a viewed event for an collection of models.
-      * @group Users
-      * @param  object $model
-      * @return true
-      */
+     * Log a viewed event for an collection of models.
+     * @group Users
+     * @param  object $model
+     * @return true
+     */
     private function logView(object $model)
     {
         foreach ($model as $item) {
             $item->updateViews();
         }
+
         return true;
     }
 }

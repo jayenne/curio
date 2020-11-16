@@ -1,13 +1,29 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
+
 use App\User;
 use App\UserLogin;
-use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(UserLogin::class, function (Faker $faker) {
-    return [
-        	'ip' => '127.0.0.0',
+class UserLoginFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = UserLogin::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'ip' => '127.0.0.0',
             'iso_code' => 'US',
             'country' => 'United States',
             'city' => 'New Haven',
@@ -21,5 +37,6 @@ $factory->define(UserLogin::class, function (Faker $faker) {
             'currency' => 'USD',
             'default' => 1,
             'cached' => false,
-    ];
-});
+        ];
+    }
+}

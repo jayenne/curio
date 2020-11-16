@@ -37,7 +37,7 @@ class FlushLogs extends Command
      */
     public function handle()
     {
-        exec('rm ' . storage_path('logs/*.log'));
+        exec('rm '.storage_path('logs/*.log'));
         $this->comment('Logs have been cleared!');
     }
 }

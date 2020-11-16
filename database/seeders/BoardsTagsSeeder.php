@@ -1,16 +1,16 @@
 <?php
 
-use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
-
-use App\Helpers\CuriousPeople\CuriousNum;
-use App\Helpers\CuriousPeople\CuriousStorage;
-
-use Symfony\Component\Console\Helper\ProgressBar;
-use Symfony\Component\Console\Output\ConsoleOutput;
+namespace Database\Seeders;
 
 use App\Board;
+use App\Helpers\CuriousPeople\CuriousNum;
+use App\Helpers\CuriousPeople\CuriousStorage;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Spatie\Tags\Tag;
+use Symfony\Component\Console\Helper\ProgressBar;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 //use Faker\Generator as Faker;
 
@@ -21,7 +21,6 @@ class BoardsTagsSeeder extends Seeder
      *
      * @return void
      */
-     
     public function __construct()
     {
     }
@@ -47,14 +46,14 @@ class BoardsTagsSeeder extends Seeder
                 $progress_tags->setFormat('%message%: %current%/%max% [%bar%] %percent:3s%% %elapsed:6s%/%estimated:-6s% %memory:6s%'."\n");
                 $progress_tags->setMessage('Creating Tags');
                 $progress_tags->start();
-                
+
                 $tags_count = CuriousNum::getRandomBias(config('seeder.boards.hashtags'));
                 for ($i = 0; $i < $tags_count; $i++) {
                     $tag = $faker->word;
                     $this_tag = Tag::findOrCreate($tag, 'hashtag');
                     $board->attachTag($this_tag);
                     $progress_tags->advance();
-                };
+                }
 
                 $cats_count = CuriousNum::getRandomBias(config('seeder.boards.categories'));
                 for ($i = 0; $i < $cats_count; $i++) {
@@ -62,7 +61,7 @@ class BoardsTagsSeeder extends Seeder
                     $this_tag = Tag::findOrCreate($tag, 'category');
                     $board->attachTag($this_tag);
                     $progress_tags->advance();
-                };
+                }
 
                 $progress_tags->clear();
                 $progress->advance();

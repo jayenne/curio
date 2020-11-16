@@ -30,7 +30,7 @@ Route::name('static.')->prefix('page')->group(function () {
     Route::get('{view}/{data?}', 'PageController@show')->name('pages');
 });
 
-Route::group(['middleware' => ['auth:sanctum','verified']], function () {
+Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/', 'HomeController');
     Route::get('/home', 'HomeController')->name('home');
 
@@ -42,10 +42,10 @@ Route::group(['middleware' => ['auth:sanctum','verified']], function () {
 
     // CURATORS
     Route::name('user.')->prefix('c')->group(function () {
-        Route::view('/{id}', 'grid', ['path' => '/b/c/','filter'=>['user'=>'{id}']])->name('user');
+        Route::view('/{id}', 'grid', ['path' => '/b/c/', 'filter'=>['user'=>'{id}']])->name('user');
         Route::view('/', 'grid', ['path' => 'c/a'])->name('all');
     });
- 
+
     // BOARDS
     Route::name('board.')->prefix('b')->group(function () {
         Route::view('{id}', 'grid', ['path' => 'b/'])->name('id');
@@ -57,7 +57,7 @@ Route::group(['middleware' => ['auth:sanctum','verified']], function () {
         //Route::post('/c', 'BoardController@store')->name('create');
         Route::put('/u', 'BoardController@update')->name('update');
     });
-    
+
     // POSTS
     // Route::name('posts.')->prefix('posts')->group(function () {
     //     Route::view('/', 'grid', ['path' => '/p/a/'])->name('all');
@@ -65,7 +65,6 @@ Route::group(['middleware' => ['auth:sanctum','verified']], function () {
     //     Route::view('/user/{id?}', 'grid', ['path' => '/p/u/'])->name('user');
     // });
 });
-
 
 // SYSTEM
 Route::get('logs', '\Melihovv\LaravelLogViewer\Controller@index');

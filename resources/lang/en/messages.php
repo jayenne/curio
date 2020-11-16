@@ -10,7 +10,7 @@ return [
     | The following language lines are used by messages.
     |
     */
-    
+
     'boards_empty' => 'You have no boards',
     'boards_last' => 'There are no more boards on this page',
     'posts_empty' => 'You have no posts on this board',

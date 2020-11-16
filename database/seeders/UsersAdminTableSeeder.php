@@ -1,11 +1,13 @@
 <?php
 
-use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
+namespace Database\Seeders;
+
 use App\User;
 use App\UserProfile;
-
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use League\Csv\Reader;
 
 class UsersAdminTableSeeder extends Seeder
@@ -23,12 +25,12 @@ class UsersAdminTableSeeder extends Seeder
         $file = public_path().'/../database/seeds/data/users-admin.csv';
         $csv = Reader::createFromPath($file);
         $timestamp = date('Y-m-d H:i:s');
-        
+
         foreach ($csv as $row) {
             if (empty($row)) {
                 return false;
             }
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'username' => $row[0],
                 'name' => $row[1].' '.$row[2],
                 'first_name' => $row[1],
@@ -37,9 +39,9 @@ class UsersAdminTableSeeder extends Seeder
                 'password' => $row[4],
             ]);
             $user->setStatus('private', 'seeded');
-            $profile = $user->profile()->save(factory(UserProfile::class)->make(['user_id'=>$user->id, 'nickname'=>$user->username]));
+            $profile = $user->profile()->save(UserProfile::factory()->make(['user_id'=>$user->id, 'nickname'=>$user->username]));
         }
-       
+
         $this->setFKCheckOn();
         Model::reguard();
     }

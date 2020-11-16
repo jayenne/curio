@@ -2,17 +2,17 @@
 
 namespace App\Listeners;
 
+use App\User;
+use App\UserLogin;
+use Carbon\Carbon;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Log;
 
-use App\User;
-use App\UserLogin;
-use Carbon\Carbon;
-
 class LogUserLogin
 {
     public $geo;
+
     /**
      * Create the event listener.
      *
@@ -29,7 +29,6 @@ class LogUserLogin
      * @param  object  $event
      * @return void
      */
-    
     public function handle($event)
     {
         $this->user = $event->user;
@@ -41,14 +40,14 @@ class LogUserLogin
         // log user location
         $ip = $_SERVER['REMOTE_ADDR'];
         $loc = geoip()->getLocation($ip = null);
-        Log::debug(['ip'=>$ip,'loc'=>$loc]);
+        Log::debug(['ip'=>$ip, 'loc'=>$loc]);
         $loc->user_id = $this->user->id;
-        $geo = $this->user->logins()->save(factory(UserLogin::class)->make($loc->toArray()));
-        
+        $geo = $this->user->logins()->save(UserLogin::factory()->make($loc->toArray()));
+
         // log last seen
         $this->user->login_at = Carbon::now()->format('Y-m-d H:i:s');
         $this->user->save();
-  
+
         //
     }
 }

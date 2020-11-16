@@ -3,8 +3,8 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Storage;
 
 class ScheduledImageUpdate extends Command
 {
@@ -39,27 +39,25 @@ class ScheduledImageUpdate extends Command
      */
     public function handle()
     {
-        $current = config('platform.sheduled_image_update.current_filename','current.jpg');
-        $library = config('platform.sheduled_image_update.library_directory','library/');
-        $used = config('platform.sheduled_image_update.used_directory','used/');
-        $path = config('platform.sheduled_image_update.root_directory','public/images/daily/');
+        $current = config('platform.sheduled_image_update.current_filename', 'current.jpg');
+        $library = config('platform.sheduled_image_update.library_directory', 'library/');
+        $used = config('platform.sheduled_image_update.used_directory', 'used/');
+        $path = config('platform.sheduled_image_update.root_directory', 'public/images/daily/');
 
         // get all in library dir as array
         $files = glob(storage_path('app/'.$path.$library.'*.jpg'));
         $filepath = Arr::random($files);
-        if (count($files) == 1)
-        {
+        if (count($files) == 1) {
             // move all files in used to library
             $usedfiles = glob(storage_path('app/'.$path.$used.'*.jpg'));
             // move used back to library
-            foreach($usedfiles as $usedfile)
-            {
+            foreach ($usedfiles as $usedfile) {
                 $usedfilename = basename($usedfile);
                 Storage::move($path.$used.$usedfilename, $path.$library.$usedfilename);
             }
-        }     
+        }
         // get random file from array
-        
+
         $file = basename($filepath);
         if (Storage::exists($path.$current)) {
             Storage::delete($path.$current);

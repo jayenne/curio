@@ -2,24 +2,22 @@
 
 namespace App\Http\Composers;
 
-use Illuminate\Contracts\Auth\Authenticatable;
-
-use Illuminate\View\View;
-use Auth;
-use App\User;
-
-use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 use App\Transformers\Users\UserTransformer;
+use App\User;
+use Auth;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\View\View;
+use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 
 class AuthenticatedUserComposer
 {
     /**
-    * The authenticated Client
-    *
-    * @var  \App\User
-    */
+     * The authenticated Client.
+     *
+     * @var  \App\User
+     */
     protected $authuser;
-    
+
     /**
      * Create a new authenticated composer.
      *
@@ -35,7 +33,7 @@ class AuthenticatedUserComposer
             ->toArray();
         $this->authuser = $resource;
     }
-    
+
     /**
      * Bind data to the view.
      *

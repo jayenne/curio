@@ -2,17 +2,18 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class UserProfile extends Model implements HasMedia
 {
+    use HasFactory;
     use InteractsWithMedia;
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -26,9 +27,9 @@ class UserProfile extends Model implements HasMedia
         'location',
         'url',
         'sex',
-        'gender'
+        'gender',
     ];
-    
+
     public function user()
     {
         return $this->belongsTo(\App\User::class);

@@ -1,28 +1,27 @@
 <?php
 
-use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
+namespace Database\Seeders;
 
 use App\Helpers\CuriousPeople\CuriousNum;
 use App\Helpers\CuriousPeople\CuriousStorage;
 use App\Helpers\CuriousPeople\CuriousUrl;
-
+use App\Post;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
-use App\Post;
-use App\PostRemoteMedia;
-
 //use Faker\Generator as Faker;
 
-class PostsMediaRemoteSeeder extends Seeder
+class PostsMediaLocalSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      *
      * @return void
      */
-     
     public function __construct()
     {
     }
@@ -32,7 +31,7 @@ class PostsMediaRemoteSeeder extends Seeder
         $faker = Faker\Factory::create();
         Model::unguard();
         $this->setFKCheckOff();
-        PostRemoteMedia::truncate();
+        DB::table('media')->where('model_type', \App\Post::class)->delete();
 
         // POST
         $posts_count = Post::count();
@@ -52,32 +51,17 @@ class PostsMediaRemoteSeeder extends Seeder
             foreach ($posts as $post) {
                 // add remote images
                 $num = CuriousNum::getRandomBias(config('seeder.posts.media'));
-                $protocol = config('platform.app.protocol');
-                $domain = config('platform.app.url');
 
-                switch ($post->type) {
-                    case 'image':
-                        $num = CuriousNum::getRandomBias(config('seeder.posts.media'));
-                        $post->remoteMedia()->saveMany(factory(PostRemoteMedia::class, $num)->make(['type'=>'image']));
-                        break;
-                    case 'video':
-                        $file = config('platform.media.posts.medium.missing.video');
-                        $url = $protocol.$domain.$file;
-                        $post->remoteMedia()->save(factory(PostRemoteMedia::class)->make(['type'=>'video', 'url' => $url]));
-                        break;
-                    case 'anim':
-                        $file = CuriousStorage::randomFileFromPath('/public/seeder/gifs/');
-                        $file = str_replace('public', '/storage', $file);
-                        $url = $protocol.$domain.$file;
-                        $post->remoteMedia()->save(factory(PostRemoteMedia::class)->make(['type'=>'anim', 'url' => $url]));
-                        break;
-                    case 'audio':
-                        $file = config('platform.media.posts.medium.missing.audio');
-                        $url = $protocol.$domain.$file;
-                        $post->remoteMedia()->save(factory(PostRemoteMedia::class)->make(['type'=>'audio', 'url' => $url]));
-                        break;
+                $addimg = rand(0, 10);
+                if ($post->type == 'image' || ($addimg > 7 && $post->type != 'text')) {
+                    $img = CuriousStorage::randomFileFromPath('/public/seeder/covers/');
+                    $url = storage_path('app/'.$img);
+                    $post->addMedia($url)
+                    ->usingFileName(Str::uuid())
+                    ->preservingOriginal()
+                    ->toMediaCollection('cover');
                 }
-                
+
                 $progress_model->advance();
             }
             $progress_model->clear();

@@ -2,10 +2,12 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class UserSocial extends Model
 {
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -30,9 +32,9 @@ class UserSocial extends Model
         'suspended',
         'token',
         'token_secret',
-        'destroy'
+        'destroy',
     ];
-    
+
     public function user()
     {
         return $this->belongsTo(\App\User::class);

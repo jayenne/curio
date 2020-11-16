@@ -2,14 +2,13 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Event;
+use App\Listeners\SendPasswordResetEmail;
+use App\Listeners\SetUserEmailAsVerified;
+use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use App\Listeners\SendPasswordResetEmail;
-use App\Listeners\SetUserEmailAsVerified;
-
-use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -26,7 +25,7 @@ class EventServiceProvider extends ServiceProvider
             SetUserEmailAsVerified::class,
         ],
         'Illuminate\Auth\Events\Login' => [
-            'App\Listeners\LogUserLogin',
+            \App\Listeners\LogUserLogin::class,
         ],
         'user.created' => [
             'App\Events\UserCreatedEvent@userCreated',
@@ -40,7 +39,6 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        parent::boot();
 
         //
     }

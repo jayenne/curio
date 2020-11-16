@@ -5,7 +5,7 @@ return [
         'protocol' => 'https://',
         'url' => env('APP_URL_LIVE', env('APP_DOMAIN')),
         'name' => config('app.name'),
-        'strapline' => ("Social Curation"),
+        'strapline' => ('Social Curation'),
     ],
     'database' => [
         'users' => [
@@ -15,7 +15,7 @@ return [
                     'basic' => 'Basic',
                     'varified' => 'varified',
                 ],
-            ]
+            ],
         ],
         'boards' => [
            'posts_limit' => 6,
@@ -25,14 +25,14 @@ return [
                     'packery' => 'Columns',
                     'fitRows' => 'Grid',
                     'vertical' => 'Rows',
-                ]
+                ],
             ],
             'orderby' => [
                 'default' => 'created_at',
                 'options' => [
                     'created_at' => 'Date',
                     'post_order' => 'Placement',
-                ]
+                ],
             ],
             'columns' => [
                 'default' => '3',
@@ -48,8 +48,8 @@ return [
                     '6' => 'col-sm-12 col-md-2',
                     '4' => 'col-sm-12 col-md-3',
                     '3' => 'col-sm-12 col-md-4',
-                    '2' => 'col-sm-12 col-md-6',//'col-sm-12 col-md-4 col-xl-3'
-                ]
+                    '2' => 'col-sm-12 col-md-6', //'col-sm-12 col-md-4 col-xl-3'
+                ],
             ],
             'themes' => [
                 'default' => 'default',
@@ -59,7 +59,7 @@ return [
                     'stickies',
                     'chalkoard',
                     'whiteboard',
-                ]
+                ],
             ],
             'status' => [
                 'default' => 'public',
@@ -70,7 +70,7 @@ return [
                     //'following' => 'I`m following',
                     //'followback' => 'We follow eachother',
                     'public' => 'Public',
-                ]
+                ],
             ],
         ],
         'posts' => [
@@ -82,14 +82,14 @@ return [
                     'video',
                     'animated_gif',
                     'audio',
-                ]
+                ],
             ],
             'themes' => [
                 'default' => 'card',
                 'options' => [
                     'card',
                     'sticky',
-                ]
+                ],
             ],
             'status' => [
                 'default' => 'public',
@@ -100,14 +100,14 @@ return [
                     'following',
                     'followback',
                     'public',
-                ]
+                ],
             ],
         ],
     ],
     'cache' => [
         'users' => [
-            'online' => 5,//minutes
-        ]
+            'online' => 5, //minutes
+        ],
     ],
     'pagination' => [
         'default' => 15,
@@ -138,7 +138,7 @@ return [
             'avatar' => '/storage/images/avatar/',
         ],
         'video' => [
-            'post' => '/storage/media/videos/'
+            'post' => '/storage/media/videos/',
         ],
         'view' => [
             'users' => 'models.users.',
@@ -187,7 +187,7 @@ return [
         ],
         'profile' => [
             'url_text_length' => 20,
-        ]
+        ],
     ],
     'media' => [
         'users' => [
@@ -220,7 +220,7 @@ return [
                 'height' => 900,
                 'cover' => '/storage/fallback/users/cover.jpg',
                 'avatar' => '/storage/fallback/users/avatar.jpg',
-            ]
+            ],
         ],
         'boards' => [
             'x-small' =>[

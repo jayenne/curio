@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Routing\Controller;
-use Illuminate\Http\Request;
 use App\Http\Requests\UpdateProfileRequest;
+use App\Transformers\Users\UserTransformer;
+use App\User;
+use Auth;
+use Cache;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Str;
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
-use App\Transformers\Users\UserTransformer;
-
-use Auth;
-use App\User;
-use Carbon\Carbon;
-use Cache;
 
 /**
  * @group User management
@@ -26,13 +25,13 @@ class UserProfileController extends Controller
         $this->middleware('auth');
         $this->isApi = \Request::is('api/u/*');
     }
- 
+
     /**
-    * Show user profile
-    * @group Users
-    * @param int $id
-    * @return Response
-    */
+     * Show user profile.
+     * @group Users
+     * @param int $id
+     * @return Response
+     */
     public function show(Request $request)
     {
         $id = Auth::id();
@@ -52,9 +51,10 @@ class UserProfileController extends Controller
             $view = $prefix.$context.$seperator.$type;
             $resource = view($view)->with('item', $resource['data'][0])->render();
         }
+
         return $resource;
     }
-    
+
     /**
      * Update the specified resource in storage.
      * @group Users
@@ -70,7 +70,7 @@ class UserProfileController extends Controller
         $model->profile->location = $request->location ?: $model->profile->location;
         $model->profile->title = $request->heading ?: $model->profile->body;
         $model->profile->body = $request->bio ?: $model->profile->body;
-        
+
         //add media
         if ($request->cover) {
             $model->profile
@@ -85,7 +85,6 @@ class UserProfileController extends Controller
                 ->toMediaCollection('avatar');
         }
 
-        
         $model->push();
 
         // HANDLE RESPONCE
@@ -94,7 +93,7 @@ class UserProfileController extends Controller
         ->parseIncludes(['profile', 'reactions', 'follows', 'subscriptions'])
         ->transformWith(new UserTransformer)
         ->toArray();
-        
+
         // dd($resource);
         // IF IS AJAX REQUEST FROM FRONTEND
         if ($request->ajax()) {
@@ -104,14 +103,14 @@ class UserProfileController extends Controller
             $type = 'modal';
             $view = $prefix.$context.$seperator.$type;
             $returnHTML = view($view)->with('item', $resource)->render();
-            
+
             $toast = [
                 'title' => 'Success',
                 'subtitle' => 'just now',
                 'content' => 'Your profile was updated.',
                 'type' => 'success',
                 'delay' => 2000,
-                'pause_on_hover' => false
+                'pause_on_hover' => false,
             ];
 
             $resource = ['toast' => $toast, 'message' => 'Profile updated', 'success' => false, 'html' => $returnHTML];
@@ -119,7 +118,7 @@ class UserProfileController extends Controller
             //flash('Profile updated!');
             return response()->json($resource, 200);
         }
-      
+
         return redirect()->back()->with('info', 'updated');
     }
 }

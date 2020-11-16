@@ -1,16 +1,17 @@
 <?php
-use Illuminate\Support\Str;
-use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
 
+namespace Database\Seeders;
+
+use App\Board;
 use App\Helpers\CuriousPeople\CuriousNum;
 use App\Helpers\CuriousPeople\CuriousStorage;
-
+use App\User;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Output\ConsoleOutput;
-
-use App\User;
-use App\Board;
 
 class BoardsTableSeeder extends Seeder
 {
@@ -19,7 +20,6 @@ class BoardsTableSeeder extends Seeder
      *
      * @return void
      */
-     
     public function __construct()
     {
     }
@@ -50,14 +50,14 @@ class BoardsTableSeeder extends Seeder
 
                 $boards = $user->boards()
                     ->saveMany(
-                        factory(Board::class, $boards_num)
+                        Board::factory()->count($boards_num)
                         ->create(['user_id'=>$user->id])
                         ->each(function ($board) use ($user, $progress_boards) {
                             // BOARD STATUS
                             $board_status_array = array_keys(config('platform.database.boards.status.options'));
                             $board_status = array_rand($board_status_array);
                             $board->setStatus($board_status_array[$board_status], 'seeded');
-                
+
                             //COVER
                             $img = CuriousStorage::randomFileFromPath('/public/seeder/covers/');
                             $url = storage_path('app/'.$img);

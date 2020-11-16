@@ -2,28 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Routing\Controller;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
+use App\Board;
+use App\Http\QueryBuilders\RandomSort;
 use App\Http\Requests\StoreBoardRequest;
 use App\Http\Requests\UpdateBoardRequest;
-
-use Spatie\QueryBuilder\QueryBuilder;
-use Spatie\QueryBuilder\AllowedFilter;
-use Spatie\QueryBuilder\AllowedSort;
-use App\Http\QueryBuilders\RandomSort;
-
-use League\Fractal\Pagination\IlluminatePaginatorAdapter;
-use App\Transformers\Boards\BoardTransformer;
-use App\Transformers\Posts\PostTransformer;
-
+use App\Post;
 use App\Traits\CanViewModelByStatusTrait;
 use App\Traits\GridErrorResponseTrait;
-
-use Auth;
+use App\Transformers\Boards\BoardTransformer;
+use App\Transformers\Posts\PostTransformer;
 use App\User;
-use App\Post;
-use App\Board;
+use Auth;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Str;
+use League\Fractal\Pagination\IlluminatePaginatorAdapter;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\AllowedSort;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class BoardController extends Controller
 {
@@ -39,9 +35,9 @@ class BoardController extends Controller
     private $error_view = 'models.boards.errors';
 
     protected $fillable = [
-        'user_id', 'cover', 'title', 'body'
+        'user_id', 'cover', 'title', 'body',
     ];
-    
+
     public function __construct(Request $request)
     {
         if ($request->user !== null) {
@@ -50,8 +46,9 @@ class BoardController extends Controller
                 $this->error_code = 422;
                 $this->handleGridError($this->error_view, $this->error_code);
             }
-        };
+        }
     }
+
     /**
      * List all boards.
      *
@@ -81,7 +78,7 @@ class BoardController extends Controller
             //     AllowedFilter::exact('user','user_id'),
             // ])
             ->whereHas('statuses', function ($q) use ($auth_id) {
-                $q->whereIn('name', ['public','subscriber','follower','following']);
+                $q->whereIn('name', ['public', 'subscriber', 'follower', 'following']);
                 $q->when('name' == 'private', function ($q) {
                     $q->where('user_id', '=', $auth_id);
                 })->orWhere('user_id', '=', $auth_id);
@@ -112,6 +109,7 @@ class BoardController extends Controller
                 $resource = view($view)->with('data', $resource['data'])->render();
             }
             $this->logView($models);
+
             return $resource;
         }
 
@@ -125,7 +123,6 @@ class BoardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-      
     public function show(Request $request, $id)
     {
         // IF CALLING USER THEN CHECK USER EXISTS
@@ -144,12 +141,13 @@ class BoardController extends Controller
                 AllowedFilter::exact('page'),
             ])
             ->whereHas('statuses', function ($q) use ($auth_id) {
-                $q->whereIn('name', ['public','follower','following']);
+                $q->whereIn('name', ['public', 'follower', 'following']);
                 $q->when('name' == 'private', function ($q) use ($auth_id) {
                     $q->where('user_id', '=', $auth_id);
                 });
                 $q->when('name' == 'subscriber', function ($q) use ($auth_id) {
                     $q->where('user_id', '=', $auth_id);
+
                     return $q;
                 })->orWhere('user_id', '=', $auth_id);
 
@@ -158,7 +156,7 @@ class BoardController extends Controller
             ->withCount(['posts'])
             ->paginate(config('platform.pagination.boards'))
             ->appends(request()->query());
-        
+
         if ($model->isNotEmpty()) {
             $resource = \Fractal::collection($model)
             ->parseIncludes(['user', 'posts', 'posts.user', 'post_count', 'reactions', 'tags', 'post_media'])
@@ -172,7 +170,7 @@ class BoardController extends Controller
                 $file = 'wrapper';
                 $view = $prefix.$file;
                 $data = $resource['data'][0]['posts']['data'];
-                
+
                 $board = ['id' => $id];
                 $board += $resource['data'][0]['settings'];
                 foreach ($data as $k => $item) {
@@ -213,7 +211,7 @@ class BoardController extends Controller
             $type = 'create';
             $view = $prefix.$context.$seperator.$type;
             $returnHTML = view($view)->with('item', $resource)->render();
-            
+
             $toast = [
                 'title' => 'Success',
                 'subtitle' => 'just now',
@@ -224,9 +222,10 @@ class BoardController extends Controller
             $resource['toast'] = $toast;
             $resource['html'] = $returnHTML;
         }
+
         return response()->json($resource, 201);
     }
-    
+
     /**
      * Update the specified resource in storage.
      *
@@ -237,10 +236,11 @@ class BoardController extends Controller
     {
         $data = Board::find($request->id);
         if (empty($data)) {
-            return response()->json(array('success' => false), 404);
+            return response()->json(['success' => false], 404);
         }
         $data->update($request->all());
-        return response()->json(array('success' => true, 'data' => $data), 202);
+
+        return response()->json(['success' => true, 'data' => $data], 202);
     }
 
     /**
@@ -253,9 +253,10 @@ class BoardController extends Controller
     public function destroy(Request $request)
     {
         $data = Board::destroy($request->id);
-        return response()->json(array('success' => true, 'newlyDestroyed' => $data), 202);
+
+        return response()->json(['success' => true, 'newlyDestroyed' => $data], 202);
     }
-   
+
     /**
      * Re0index the specified board's pivot with post order.
      *
@@ -270,17 +271,18 @@ class BoardController extends Controller
         $positions = json_decode($request->positions, true);
 
         if (empty($board)) {
-            return response()->json(array('success' => false), 204);
+            return response()->json(['success' => false], 204);
         }
 
         foreach ($positions as $key => $val) {
             $board->posts()
                 ->where('post_id', $val['i'])
-                ->update(['board_post.index' => $key,'board_post.position' => $val['x']]);
+                ->update(['board_post.index' => $key, 'board_post.position' => $val['x']]);
         }
-       
+
         return response()->json(['success' => true, 'board' => $board, 'positions' => $positions], 202);
     }
+
     /**
      * Get the index name for the model.
      *
@@ -290,6 +292,7 @@ class BoardController extends Controller
     {
         return 'boards_index';
     }
+
     /**
      * Get the indexable data array for the model.
      *
@@ -312,23 +315,23 @@ class BoardController extends Controller
     {
         return $this->id;
     }
-   
 
     /**
-    * Log a viewed event for an collection of models.
-    * @group Posts
-    * @param  object $model
-    * @return true
-    */
+     * Log a viewed event for an collection of models.
+     * @group Posts
+     * @param  object $model
+     * @return true
+     */
     private function logView(object $model)
     {
         $auth_id = Auth::id();
         foreach ($model as $item) {
             $isOwner = $auth_id == $item->user_id ? true : false;
-            if (!$isOwner) {
+            if (! $isOwner) {
                 $item->updateViews();
             }
         }
+
         return true;
     }
 }

@@ -23,6 +23,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = 'home';
     public const REGISTER = 'social.registration';
+
     /**
      * Define your route model bindings, pattern filters, etc.
      *

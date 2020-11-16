@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 //use Auth;
 use App\User;
-
-use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class FollowController extends Controller
 {
@@ -15,7 +14,7 @@ class FollowController extends Controller
         $reaction = $request->reaction;
         $type = (string) ucfirst(strtolower($request['type']));
         $model = 'App\\'.$type;
-        $data  = $model::findOrFail($request->id);
+        $data = $model::findOrFail($request->id);
         $user = \Auth::user();
         $user->toggleFollow($data);
         /*
@@ -36,7 +35,7 @@ class FollowController extends Controller
         ->toArray();
 
         $resource = $resource['data'][0];
-        
+
         return $resource;
         /*
         return response()->json(

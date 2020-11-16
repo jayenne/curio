@@ -4,12 +4,12 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 //use Laravel\Nova\Fields\Gravatar;
+use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\HasOne;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Image;
-use Laravel\Nova\Fields\HasOne;
-use Laravel\Nova\Fields\HasMany;
 
 class User extends Resource
 {
@@ -41,10 +41,10 @@ class User extends Resource
      *
      * @var array
      */
-    public static $with = ['profile','socials'];
-    
+    public static $with = ['profile', 'socials'];
+
     public static $group = 'Users';
-    
+
     /**
      * Get the fields displayed by the resource.
      *

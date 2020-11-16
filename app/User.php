@@ -1,38 +1,36 @@
 <?php
+
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\Hash;
-use Laravel\Scout\Searchable;
-
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\Image\Manipulations;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
-
-use Spatie\ModelStatus\HasStatuses;
-use Spatie\Activitylog\Traits\LogsActivity;
-
-use Cog\Contracts\Love\Reacterable\Models\Reacterable as ReacterableContract;
-use Cog\Laravel\Love\Reacterable\Models\Traits\Reacterable;
-use Cog\Contracts\Love\Reactable\Models\Reactable as ReactableContract;
-use Cog\Laravel\Love\Reactable\Models\Traits\Reactable;
-
-use Overtrue\LaravelFollow\Followable;
-use Overtrue\LaravelSubscribe\Traits\Subscriber;
-
-use App\UserProfile;
-use App\UserSocial;
 use App\Board;
 use App\Post;
+use App\UserProfile;
+use App\UserSocial;
 use Carbon\Carbon;
+use Cog\Contracts\Love\Reactable\Models\Reactable as ReactableContract;
+use Cog\Contracts\Love\Reacterable\Models\Reacterable as ReacterableContract;
+use Cog\Laravel\Love\Reactable\Models\Traits\Reactable;
+use Cog\Laravel\Love\Reacterable\Models\Traits\Reacterable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
+use Laravel\Sanctum\HasApiTokens;
+use Laravel\Scout\Searchable;
+use Overtrue\LaravelFollow\Followable;
+use Overtrue\LaravelSubscribe\Traits\Subscriber;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Image\Manipulations;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Spatie\ModelStatus\HasStatuses;
 
 class User extends Authenticatable implements ReacterableContract, ReactableContract, MustVerifyEmail, HasMedia
 {
+    use HasFactory;
     use SoftDeletes,
         Notifiable,
         HasApiTokens,
@@ -44,7 +42,7 @@ class User extends Authenticatable implements ReacterableContract, ReactableCont
         Reactable,
         Followable,
         Subscriber;
-    
+
     protected $guarded = []; // YOLO
 
     /**
@@ -58,7 +56,7 @@ class User extends Authenticatable implements ReacterableContract, ReactableCont
      * @var array
      */
     protected $fillable = [
-        'username', 'first_name', 'last_name', 'email', 'password', 'locale_code', 'active', 'email_varified_at'
+        'username', 'first_name', 'last_name', 'email', 'password', 'locale_code', 'active', 'email_varified_at',
     ];
 
     /**
@@ -66,7 +64,7 @@ class User extends Authenticatable implements ReacterableContract, ReactableCont
      * @var array
      */
     protected $hidden = [
-        'email_verified_at', 'password', 'remember_token', 'activation_token'
+        'email_verified_at', 'password', 'remember_token', 'activation_token',
     ];
 
     /**
@@ -82,16 +80,17 @@ class User extends Authenticatable implements ReacterableContract, ReactableCont
     // hash a password before saving
     public function setPasswordAttribute($password)
     {
-        if ($password !== null & $password !== "") {
+        if ($password !== null & $password !== '') {
             $hashed = Hash::make($password);
             //\Log::debug(['password' => $password, 'Hashed' => $hashed]);
             $this->attributes['password'] = $hashed;
         }
     }
+
     // ACCESSORS
     public function getFullNameAttribute()
     {
-        return $this->attributes['first_name'] . ' ' . $this->attributes['last_name'];
+        return $this->attributes['first_name'].' '.$this->attributes['last_name'];
     }
 
     /**
@@ -108,7 +107,7 @@ class User extends Authenticatable implements ReacterableContract, ReactableCont
         return $model;
     }
 */
-    
+
     /**
      * Update the specified resource in storage.
      * @group Users
@@ -117,31 +116,33 @@ class User extends Authenticatable implements ReacterableContract, ReactableCont
      */
     public function updateVarifyEmailAt(int $id)
     {
-        $user = User::findOrFail($id);
+        $user = self::findOrFail($id);
         $datetime = Carbon::now();
         $user->email_verified_at = $datetime->toDateTimeString();
         $user->save();
+
         return response()->json(202);
     }
+
     /**
      * Gets the users that are ownabed by this user.
      * @return [collection] [description]
      */
-
     public function parent()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(self::class);
     }
 
     public function children()
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(self::class);
     }
 
     public function logins()
     {
         return $this->hasMany(UserLogin::class);
     }
+
     /**
      * Gets the list of boards that are owned by this user.
      * @return [type] [description]
@@ -150,7 +151,7 @@ class User extends Authenticatable implements ReacterableContract, ReactableCont
     {
         return $this->hasMany(Board::class);
     }
- 
+
     /**
      * Gets the list of posts that are ownable by this user.
      * @return [type] [description]
@@ -159,18 +160,18 @@ class User extends Authenticatable implements ReacterableContract, ReactableCont
     {
         return $this->hasMany(Post::class);
     }
-    
+
     /**
-     * [profile description]
+     * [profile description].
      * @return [type] [description]
      */
     public function profile()
     {
         return $this->hasOne(UserProfile::class);
     }
-    
+
     /**
-     * [socials description]
+     * [socials description].
      * @return [type] [description]
      */
     public function socials()
@@ -183,27 +184,25 @@ class User extends Authenticatable implements ReacterableContract, ReactableCont
     {
         return 'users_index';
     }
-    
+
     public function toSearchableArray()
     {
         $array = $this->toArray();
-        
+
         //$array['avatar'] = $this->profile['avatar'];
-        
+
         return $array;
     }
-    
+
     public function getScoutKey()
     {
         return $this->id;
     }
-    
+
     public function getScoutKeyName()
     {
         return 'id';
     }
-
-
 
     /**
      * Check if a comment for a specific model needs to be approved.
@@ -214,8 +213,9 @@ class User extends Authenticatable implements ReacterableContract, ReactableCont
     {
         return false;
     }
+
     /**
-     * [getJWTIdentifier description]
+     * [getJWTIdentifier description].
      * @return [type] [description]
      */
     public function getJWTIdentifier()
@@ -224,7 +224,7 @@ class User extends Authenticatable implements ReacterableContract, ReactableCont
     }
 
     /**
-     * [getJWTCustomClaims description]
+     * [getJWTCustomClaims description].
      * @return [type] [description]
      */
     public function getJWTCustomClaims()
@@ -238,12 +238,12 @@ class User extends Authenticatable implements ReacterableContract, ReactableCont
         $pos = strpos($value, ' ');
         $this->attributes['first_name'] = $pos ? strstr($value, ' ', true) : $value;
     }
-    
+
     protected function setLastNameAttribute($value)
     {
         $value = trim($value);
         $pos = strpos($value, ' ');
-        
+
         $this->attributes['last_name'] = $pos ? strstr($value, ' ', false) : $value;
     }
 

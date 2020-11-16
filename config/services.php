@@ -34,24 +34,23 @@ return [
        'public' => env('STRIPE_PUBLIC_KEY', ''),
        'secret' => env('STRIPE_SECRET_KEY', ''),
     ],
-    
+
     'twitter' => [
         'client_id' => env('TWITTER_CONSUMER_KEY'),
         'client_secret' => env('TWITTER_CONSUMER_SECRET'),
         'redirect' => env('APP_URL').'/login/twitter/callback',
     ],
-    
+
     'facebook' => [
         'client_id' => env('FACEBOOK_CLIENT_ID'),
         'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
         'redirect' =>  env('APP_URL').'/login/facebook/callback',
     ],
-    
+
     'linkedin' => [
         'client_id' => env('LINKEDIN_CLIENT_ID'),
         'client_secret' => env('LINKEDIN_CLIENT_SECRET'),
         'redirect' => env('APP_URL').'/login/linkedin/callback',
-    ]
-
+    ],
 
 ];

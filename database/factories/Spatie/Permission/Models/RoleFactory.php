@@ -1,18 +1,19 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Spatie\Permission\Models;
 
-use App\PostMentions;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
+use Spatie\Permission\Models\Role;
 
-class PostMentionsFactory extends Factory
+class RoleFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = PostMentions::class;
+    protected $model = Role::class;
 
     /**
      * Define the model's default state.
@@ -22,9 +23,8 @@ class PostMentionsFactory extends Factory
     public function definition()
     {
         return [
-            //
-            'social_id' => $this->faker->randomNumber(),
-            'handle' => $this->faker->userName(),
+            'name' => $this->faker->name,
+            'uuid' => $this->faker->unique()->uuid(),
         ];
     }
 }
