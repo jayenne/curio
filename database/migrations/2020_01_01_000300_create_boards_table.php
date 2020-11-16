@@ -21,8 +21,8 @@ class CreateBoardsTable extends Migration
             'columns_options'  => array_keys(config('platform.database.boards.columns.options')),
             'columns_default'  => config('platform.database.boards.columns.default'),
         ];
-                
-        Schema::create('boards', function (Blueprint $table) use ($options){
+
+        Schema::create('boards', function (Blueprint $table) use ($options) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->string('title');

@@ -1,13 +1,13 @@
 <?php
-use Illuminate\Support\Arr;
-use Illuminate\Database\Seeder;
+
+use App\Board;
+use App\Helpers\CuriousPeople\CuriousNum;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Arr;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Output\ConsoleOutput;
-use App\Helpers\CuriousPeople\CuriousNum;
-
-use App\User;
-use App\Board;
 
 class BoardsSubscribesTableSeeder extends Seeder
 {
@@ -16,17 +16,16 @@ class BoardsSubscribesTableSeeder extends Seeder
      *
      * @return void
      */
-     
     public function __construct()
     {
     }
-    
+
     public function run()
     {
         Model::unsetEventDispatcher();
         Model::unguard();
         $this->setFKCheckOff();
-        
+
         $boards_num = config('seeder.users.subscribe.boards');
         $posts_vars = config('seeder.users.subscribe.boards');
 
@@ -43,14 +42,14 @@ class BoardsSubscribesTableSeeder extends Seeder
                 $boards_count = CuriousNum::getRandomBias($boards_num);
                 $boards_count;
 
-                $output1= new ConsoleOutput();
+                $output1 = new ConsoleOutput();
                 $progress1 = new ProgressBar($output1, $boards_count);
                 $progress1->setFormat('%message%: %current%/%max% [%bar%] %percent:3s%% %elapsed:6s%/%estimated:-6s% %memory:6s%'."\n");
                 $progress1->setMessage('Subscribing User '.$user->id.' to '.$boards_count.' Boards');
                 $progress1->start();
 
                 // BOARDS
-                Board::inRandomOrder()->where('user_id','!=', $user->id)->limit($boards_count)->each(function ($model) use ($user, $progress1) {
+                Board::inRandomOrder()->where('user_id', '!=', $user->id)->limit($boards_count)->each(function ($model) use ($user, $progress1) {
                     $user->toggleSubscribe($model);
                     $progress1->advance();
                 });
@@ -62,7 +61,6 @@ class BoardsSubscribesTableSeeder extends Seeder
             $progress->clear();
             $progress->finish();
         });
-       
 
         $this->setFKCheckOn();
         Model::reguard();

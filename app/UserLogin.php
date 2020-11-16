@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserLogin extends Model
 {
-    //    
-    function user() {
+    //
+    public function user()
+    {
         return $this->hasOne(User::class);
     }
 }

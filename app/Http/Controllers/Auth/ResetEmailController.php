@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Providers\RouteServiceProvider;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Providers\RouteServiceProvider;
 use App\Traits\SendVerifyEmailNotificationTrait;
-use Auth;
 use App\User;
+use Auth;
+use Illuminate\Http\Request;
 
 class ResetEmailController extends Controller
 {
@@ -28,9 +28,10 @@ class ResetEmailController extends Controller
         $user->forceFill([
                 'email' => $request->email,
             ])->save();
-        
+
         //$this->sendWelcomeEmail($user);
         $this->sendVerifyEmailNotification($user);
+
         return redirect()->route($this->redirectTo);
     }
 
@@ -40,5 +41,4 @@ class ResetEmailController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
-
 }

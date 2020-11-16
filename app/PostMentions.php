@@ -10,11 +10,11 @@ class PostMentions extends Model
 {
     //use Searchable;
     //public $timestamps = false;
-    
+
     protected $fillable = [
         'social_id', 'handle',
     ];
-    
+
     public function posts()
     {
         return $this->belongsToMany(\App\Post::class)->withTimestamps();

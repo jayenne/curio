@@ -4,7 +4,7 @@ return [
     'users' => [
         'count' => 10, // seed a fixed number of users
         'roles' => [
-            'developer'=>['all','developer'],
+            'developer'=>['all', 'developer'],
             'admin'=>['all'],
             'owner'=>['crud_owner'],
             'member'=>['crud_own'],
@@ -63,7 +63,7 @@ return [
         ],
         'sex' => [
             'male' => '50',
-            'female' => '50'
+            'female' => '50',
         ],
         'gender' => [
             'heterosexual' => '94.4', // % probability

@@ -1,24 +1,21 @@
 <?php
-use Illuminate\Support\Arr;
-use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
 
-use Illuminate\Support\Str;
+use App\Board;
+use App\Helpers\CuriousPeople\CuriousNum;
+use App\Helpers\CuriousPeople\CuriousStorage;
+use App\Post;
 //use Illuminate\Support\Facades\File;
 //use Illuminate\Support\Facades\Storage;
 
-use App\Helpers\CuriousPeople\CuriousNum;
-use App\Helpers\CuriousPeople\CuriousStorage;
-
-use Symfony\Component\Console\Helper\ProgressBar;
-use Symfony\Component\Console\Output\ConsoleOutput;
-
-use App\Board;
-use App\Post;
 use App\PostMentions;
 use App\PostUrls;
-
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Spatie\Tags\Tag;
+use Symfony\Component\Console\Helper\ProgressBar;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 class PostsTableSeeder extends Seeder
 {
@@ -27,7 +24,6 @@ class PostsTableSeeder extends Seeder
      *
      * @return void
      */
-     
     public function __construct()
     {
     }
@@ -43,8 +39,8 @@ class PostsTableSeeder extends Seeder
 
         // BOARD
         $board_count = Board::count() ?: 0;
-        if (!$board_count > 0) {
-            die(error_log("There are no boards to add posts to"));
+        if (! $board_count > 0) {
+            die(error_log('There are no boards to add posts to'));
         }
         $output = new ConsoleOutput();
         $progress = new ProgressBar($output, $board_count);
@@ -74,7 +70,7 @@ class PostsTableSeeder extends Seeder
                                     $post->mentions()->saveMany(factory(PostMentions::class, $mentions_num)->make());
                                     $urls_num = CuriousNum::getRandomBias(config('seeder.posts.urls'));
                                     $post->urls()->saveMany(factory(PostUrls::class, $urls_num)->make());
-                                    
+
                                     $progress_posts->advance();
                                 }
                             )

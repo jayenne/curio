@@ -20,14 +20,14 @@ use Illuminate\Support\Str;
 
 $factory->define(User::class, function (Faker $faker) {
     $gender = $faker->randomElement(['male', 'female']);
-    ;
+
     $firstname = $faker->firstName($gender);
     $lastname = $faker->lastName;
-    $seperator = $faker->randomElement(['.', '-', '_','']);
+    $seperator = $faker->randomElement(['.', '-', '_', '']);
 
     $username = $firstname.$seperator.$lastname;
-    $tld = $faker->randomElement(['.com', '.org', '.net','.co.uk','.co','.gov']);
-    ;
+    $tld = $faker->randomElement(['.com', '.org', '.net', '.co.uk', '.co', '.gov']);
+
     $email = $username.'@example'.$tld;
     $created_days = rand(10, 365 * 6);
     $verified_days = rand(10, $created_days);
@@ -41,7 +41,7 @@ $factory->define(User::class, function (Faker $faker) {
         'first_name' => $firstname,
         'last_name' => $lastname,
         'email' => $email,
-        'password' => "password",
+        'password' => 'password',
         'remember_token' => Str::random(10),
         'activation_token' => Str::random(60),
         'active_at' => $faker->dateTimeBetween($startDate = '-'.$active_hours.' hours', $endDate = 'now', $timezone = null),

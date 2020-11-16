@@ -1,9 +1,8 @@
 <?php
 
-use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
-
 use App\UserSocial;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Seeder;
 use League\Csv\Reader;
 
 class UsersAdminSocialsTableSeeder extends Seeder
@@ -25,7 +24,7 @@ class UsersAdminSocialsTableSeeder extends Seeder
             if (empty($row)) {
                 return false;
             }
-            
+
             UserSocial::updateOrCreate(
                 [
                     'user_id'=> $row[1],

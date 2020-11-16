@@ -28,6 +28,7 @@ class VerifyEmailNotification extends Notification
     {
         $this->data = $data;
     }
+
     /**
      * Get the notification's channels.
      *
@@ -49,7 +50,7 @@ class VerifyEmailNotification extends Notification
     {
         $verificationUrl = $this->verificationUrl($notifiable);
         $passwordResetUrl = $this->passwordResetUrl($notifiable);
-        
+
         if (static::$toMailCallback) {
             return call_user_func(static::$toMailCallback, $notifiable, $verificationUrl);
         }
@@ -80,16 +81,15 @@ class VerifyEmailNotification extends Notification
     }
 
     /**
-         * Get the reset password URL for the given notifiable.
-         *
-         * @param  mixed  $notifiable
-         * @return string
-         */
+     * Get the reset password URL for the given notifiable.
+     *
+     * @param  mixed  $notifiable
+     * @return string
+     */
     protected function passwordResetUrl($notifiable)
     {
         return url('password/reset/'.$this->data['password_reset_token'].'?email='.$notifiable->email);
     }
-
 
     /**
      * Set a callback that should be used when building the notification mail message.

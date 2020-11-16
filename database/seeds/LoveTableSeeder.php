@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Seeder;
 
 class LoveTableSeeder extends Seeder
 {
@@ -17,7 +17,6 @@ class LoveTableSeeder extends Seeder
         $this->setFKCheckOff();
 
         $reaction = config('seeder.laravel-love.options');
-        
 
         DB::table('love_reaction_types')->truncate();
 
@@ -27,13 +26,14 @@ class LoveTableSeeder extends Seeder
                 'mass' => $val,
             ]);
         }
-        
+
         $this->setFKCheckOn();
         Model::reguard();
     }
 
-    private function setFKCheckOff() {
-        switch(DB::getDriverName()) {
+    private function setFKCheckOff()
+    {
+        switch (DB::getDriverName()) {
             case 'mysql':
                 DB::statement('SET FOREIGN_KEY_CHECKS=0');
                 break;
@@ -43,8 +43,9 @@ class LoveTableSeeder extends Seeder
         }
     }
 
-    private function setFKCheckOn() {
-        switch(DB::getDriverName()) {
+    private function setFKCheckOn()
+    {
+        switch (DB::getDriverName()) {
             case 'mysql':
                 DB::statement('SET FOREIGN_KEY_CHECKS=1');
                 break;
@@ -53,5 +54,4 @@ class LoveTableSeeder extends Seeder
                 break;
         }
     }
-
 }

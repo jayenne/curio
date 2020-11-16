@@ -2,24 +2,21 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Log;
-use \Illuminate\Http\Request;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Support\Facades\Password;
-use Illuminate\Support\Str;
-
-use Socialite;
-
+use App\Helpers\CuriousPeople\CuriousStorage;
+use App\Helpers\CuriousPeople\CuriousStr;
 use App\Http\Controllers\Controller;
+use App\Notifications\VerifyEmailNotification;
 use App\Providers\RouteServiceProvider;
 use App\Traits\SendVerifyEmailNotificationTrait;
-use App\Notifications\VerifyEmailNotification;
-use App\Helpers\CuriousPeople\CuriousStr;
-use App\Helpers\CuriousPeople\CuriousStorage;
-
 use App\User;
-use App\UserSocial;
 use App\UserProfile;
+use App\UserSocial;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Str;
+use Log;
+use Socialite;
 
 class LoginController extends Controller
 {
@@ -43,7 +40,7 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
-    protected $redirectToRegister = RouteServiceProvider::REGISTER;//'social.registration';
+    protected $redirectToRegister = RouteServiceProvider::REGISTER; //'social.registration';
     protected $password;
 
     /**
@@ -55,15 +52,16 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-   
+
     public function username()
     {
         $request = request();
         $type = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
         $request[$type] = $request->username;
+
         return $type;
     }
-    
+
     /**
      * Handle an authentication attempt.
      *
@@ -83,7 +81,7 @@ class LoginController extends Controller
     // {
     //     \Log::debug(['authenticated' => $user->id, 'authid' => \Auth::id(), 'route' => $this->redirectTo]);
     // }
-  
+
     public function redirectToProvider($service)
     {
         return Socialite::driver($service)->redirect();
@@ -97,20 +95,20 @@ class LoginController extends Controller
         $temp_email = Str::uuid().'@example.org';
 
         // if socail has no email...
-        if($social->email === null){
+        if ($social->email === null) {
             // atempt to find an existing user by social handle.
             $user_socail = UserSocial::where('social_id', $social->id)->first();
 
-            if($user_socail !== null){
+            if ($user_socail !== null) {
                 $social->email = $user_socail->user()->first()->email;
             }
         }
-        
+
         // get email from user or temp email
         $user = User::firstOrCreate(
             [
                 // PROMPT FOR EMAIL ADDRESS
-                'email' => $social->email ?: $temp_email
+                'email' => $social->email ?: $temp_email,
             ],
             [
                 'username' => strtolower($social->nickname),
@@ -124,7 +122,7 @@ class LoginController extends Controller
         $user->socials()->updateOrCreate([
                     'user_id' => $user->id,
                     'service' => $service,
-                    'social_id' => $social->id
+                    'social_id' => $social->id,
                 ],
                 [
                     'name' => $social->name,
@@ -154,16 +152,16 @@ class LoginController extends Controller
         if ($user->wasRecentlyCreated) {
             $user->setStatus('public', 'registered');
 
-            if($social->email != null){ //TODO: add email validation here
+            if ($social->email != null) { //TODO: add email validation here
                 $this->sendVerifyEmailNotification($user);
             } else {
                 $this->redirectTo = 'email-register';
             }
         }
 
-         // LOG USER IN
+        // LOG USER IN
         auth()->login($user);
         // RETURN VIEW
-        return redirect()->route($this->redirectTo);       
+        return redirect()->route($this->redirectTo);
     }
 }

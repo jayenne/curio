@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserSocial extends Model
 {
-
     /**
      * The attributes that are mass assignable.
      *
@@ -30,9 +29,9 @@ class UserSocial extends Model
         'suspended',
         'token',
         'token_secret',
-        'destroy'
+        'destroy',
     ];
-    
+
     public function user()
     {
         return $this->belongsTo(\App\User::class);

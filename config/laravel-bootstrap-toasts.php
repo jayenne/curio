@@ -10,9 +10,8 @@ return [
      * Defines the position of the toast on the window
      */
     // "top" or "bottom"
-    "position_x" => 'top',
+    'position_x' => 'top',
     // "left" or "right"
-    "position_y" => 'right',
-
+    'position_y' => 'right',
 
 ];

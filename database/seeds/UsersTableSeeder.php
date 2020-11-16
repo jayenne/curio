@@ -1,21 +1,17 @@
 <?php
-use Illuminate\Support\Arr;
-use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
-
-use Illuminate\Support\Str;
 
 use App\Helpers\CuriousPeople\CuriousNum;
 use App\Helpers\CuriousPeople\CuriousStorage;
-
-use Symfony\Component\Console\Helper\ProgressBar;
-use Symfony\Component\Console\Output\ConsoleOutput;
-
 use App\User;
 use App\UserProfile;
 use App\UserSocial;
-
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Spatie\Tags\Tag;
+use Symfony\Component\Console\Helper\ProgressBar;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 class UsersTableSeeder extends Seeder
 {
@@ -24,7 +20,6 @@ class UsersTableSeeder extends Seeder
      *
      * @return void
      */
-     
     public function __construct()
     {
     }
@@ -35,15 +30,15 @@ class UsersTableSeeder extends Seeder
         Model::unguard();
         $this->setFKCheckOff();
         //User::truncate();
-        
+
         $users_num = config('seeder.users.count');
-        
+
         $output = new ConsoleOutput();
         $progress = new ProgressBar($output, $users_num);
         $progress->setFormat('%message%: %current%/%max% [%bar%] %percent:3s%% %elapsed:6s%/%estimated:-6s% %memory:6s%'."\n");
         $progress->setMessage('Creating Users');
         $progress->start();
-       
+
         $users = factory(User::class, $users_num)->create()->each(
             function ($user) use ($progress) {
                 // STATUS
@@ -71,7 +66,7 @@ class UsersTableSeeder extends Seeder
                     ->usingFileName(Str::uuid())
                     ->preservingOriginal()
                     ->toMediaCollection('avatar');
-                
+
                 // USER SOCIAL
                 $social = $user->socials()->save(
                     factory(UserSocial::class)
@@ -81,11 +76,11 @@ class UsersTableSeeder extends Seeder
                         'nickname'=> Str::limit($user->username, 15),
                     ])
                 );
-                
+
                 $progress->advance();
             }
         );
-        
+
         $progress->finish();
 
         $this->setFKCheckOn();

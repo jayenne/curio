@@ -18,7 +18,7 @@ class CreatePostPostMentionsTable extends Migration
             $table->unsignedBigInteger('post_id');
             $table->unsignedBigInteger('post_mentions_id');
             $table->timestamps();
-            
+
             $table->foreign('post_mentions_id')->references('id')->on('post_mentions')->onDelete('cascade');
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
         });

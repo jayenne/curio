@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use App\User;
+use Illuminate\Console\Command;
 
 class DeleteUser extends Command
 {
@@ -39,10 +39,10 @@ class DeleteUser extends Command
     public function handle()
     {
         $id = $this->option('id');
-        if (!is_numeric($id) === true) {
+        if (! is_numeric($id) === true) {
             $model = User::select('id')->where('email', $this->option('id'))->first();
             if ($model === null) {
-                $this->error('User '. $id.' didn`t exist.');
+                $this->error('User '.$id.' didn`t exist.');
                 dd();
             }
         }
@@ -55,7 +55,7 @@ class DeleteUser extends Command
         $statuses = $model->statuses;
         $model->deleteStatus($statuses);
         $model->forceDelete();
-        
+
         $this->info('User:'.$model->id.' ('.$model->email.') was deleted');
     }
 }

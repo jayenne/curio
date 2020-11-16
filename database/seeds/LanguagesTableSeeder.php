@@ -19,7 +19,7 @@ class LanguagesTableSeeder extends Seeder
             if (empty($row)) {
                 return false;
             }
-    
+
             \DB::table('languages')->insert(
                 [
                     'family' => $row[0],

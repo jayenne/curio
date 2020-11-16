@@ -1,26 +1,23 @@
 <?php
-    
+
 namespace App\Transformers\Posts;
 
-use App\User;
 use App\Board;
 use App\Post;
-use App\PostUrls;
 use App\PostMentions;
-
-use Spatie\Tags\Tag;
-
-use League\Fractal\TransformerAbstract;
+use App\PostUrls;
 use App\Transformers\Boards\BoardTransformer;
-use App\Transformers\Users\UserTransformer;
-use App\Transformers\ReactionTransformer;
-use App\Transformers\SubscriptionTransformer;
 use App\Transformers\MediaTransformer;
 use App\Transformers\Posts\RemoteMediaTransformer;
+use App\Transformers\ReactionTransformer;
+use App\Transformers\SubscriptionTransformer;
 use App\Transformers\TagTransformer;
-
+use App\Transformers\Users\UserTransformer;
+use App\User;
 use League\Fractal\Manager;
 use League\Fractal\Resource\Collection;
+use League\Fractal\TransformerAbstract;
+use Spatie\Tags\Tag;
 
 class PostTransformer extends TransformerAbstract
 {
@@ -62,18 +59,18 @@ class PostTransformer extends TransformerAbstract
             'body' => ucfirst($model->text),
             'type' => $this->typemap($model->type ?? 'text'),
             'theme' => $model->theme,
-            'board_width' => 100/3,
+            'board_width' => 100 / 3,
             'notes' => ucfirst($model->notes),
             'language' => $model->lang,
             'source' => [
                 'name' => $model->source_platform_id,
-                'icon' => ['sources/'.$model->source_platform_id,'icons/source-default'],
+                'icon' => ['sources/'.$model->source_platform_id, 'icons/source-default'],
                 'url' => $model->source_permalink,
                 ],
                 'sensitive' => $model->sensitive,
                 'members' => (int) $model->public,
                 'posted_at' => $model->posted_at,
-            
+
             //USER
                 'is_subscribed' => \Auth::User()->hasSubscribed($model),
 
@@ -89,7 +86,7 @@ class PostTransformer extends TransformerAbstract
                     'last_action' => $model->active_at,
                     'last_action_string' => \Carbon\Carbon::parse($model->active_at)->diffForHumans(),
                 ],
-    
+
                 ],
             ];
     }
@@ -102,6 +99,7 @@ class PostTransformer extends TransformerAbstract
                 $type = 'anim';
                 break;
         }
+
         return $type;
     }
 
@@ -109,17 +107,18 @@ class PostTransformer extends TransformerAbstract
     {
         return $this->item($model->user, new UserTransformer);
     }
-    
+
     public function includeBoards(Post $model)
     {
         $boards = $model->boards;
+
         return $this->collection($boards, new BoardTransformer);
     }
 
     public function includeTags(Post $model)
     {
         $tags = $model->tags;
-        if (!is_null($tags)) {
+        if (! is_null($tags)) {
             return $this->collection($model->tags, new TagTransformer);
         }
     }
@@ -132,8 +131,9 @@ class PostTransformer extends TransformerAbstract
     {
         $media = new MediaTransformer;
         $media->type = ['cover'];
-        $media->sizes =  array_keys(config('platform.media.posts'));
+        $media->sizes = array_keys(config('platform.media.posts'));
         $media->fallback = config('platform.media.posts');
+
         return $this->collection($model->media, $media);
     }
 
@@ -141,11 +141,12 @@ class PostTransformer extends TransformerAbstract
     {
         $media = new MediaTransformer;
         $media->type = ['cover'];
-        $media->sizes =  array_keys(config('platform.media.posts'));
+        $media->sizes = array_keys(config('platform.media.posts'));
         $media->fallback = config('platform.media.posts');
+
         return $this->item($model->remoteMedia, new RemoteMediaTransformer);
     }
-    
+
     public function includeUrls(Post $model)
     {
         return $this->item($model->urls, new UrlsTransformer);

@@ -1,23 +1,19 @@
 <?php
-    
+
 namespace App\Transformers\Boards;
 
-use App\User;
 use App\Board;
-//use App\Post;
-use Spatie\Tags\Tag;
-
-use App\Transformers\Users\UserTransformer;
-//use App\Transformers\Boards\BoardPostTransformer;
-use App\Transformers\Posts\PostTransformer;
-
-use App\Transformers\ReactionTransformer;
-use App\Transformers\SubscriptionTransformer;
 use App\Transformers\MediaTransformer;
-
+//use App\Post;
+use App\Transformers\Posts\PostTransformer;
+use App\Transformers\ReactionTransformer;
+//use App\Transformers\Boards\BoardPostTransformer;
+use App\Transformers\SubscriptionTransformer;
 use App\Transformers\TagTransformer;
-
+use App\Transformers\Users\UserTransformer;
+use App\User;
 use League\Fractal\TransformerAbstract;
+use Spatie\Tags\Tag;
 
 class BoardTransformer extends TransformerAbstract
 {
@@ -42,7 +38,7 @@ class BoardTransformer extends TransformerAbstract
     public function transform(Board $model)
     {
         $posts_limit = $model->posts_limit ?: config('platform.database.boards.posts_limit');
-        $columns =  $model->columns ?? config('platform.database.boards.columns.default');
+        $columns = $model->columns ?? config('platform.database.boards.columns.default');
         $cols = config('platform.database.boards.columns.classes');
         $column_classes = $cols[$columns];
 
@@ -94,8 +90,10 @@ class BoardTransformer extends TransformerAbstract
             $arr[] = $tag['name'];
         }
         $str = implode($delimiter, $arr);
+
         return $str;
     }
+
     public function includeUser(Board $model)
     {
         return $this->item($model->user, new UserTransformer);
@@ -106,7 +104,7 @@ class BoardTransformer extends TransformerAbstract
         $posts_limit = $model->posts_limit ?: config('platform.database.boards.posts_limit');
         $posts = $model->direction ? $model->posts->sortByDesc($model->orderby) : $model->posts->sortBy($model->orderby)->take($posts_limit);
         $posts = $model->posts;
-        
+
         if ($model->posts_count > 0) {
             return $this->collection($posts, new PostTransformer);
         }
@@ -119,6 +117,7 @@ class BoardTransformer extends TransformerAbstract
         $transformer->sizes = ['small']; // array_keys(config('platform.media.boards'));
         $transformer->fallback = config('platform.media.boards');
         $data = $this->collection($model->media, $transformer);
+
         return $data;
     }
 
@@ -153,7 +152,7 @@ class BoardTransformer extends TransformerAbstract
     //     $models =  $model->posts
     //             ->sortBy($model->orderby)
     //             ->take($posts_limit);
-    
+
     //     //$covers = [];
     //     //foreach($models as $model) {
     //     $media = $model->getMedia('cover');
@@ -166,7 +165,7 @@ class BoardTransformer extends TransformerAbstract
     public function includeTags(Board $model)
     {
         $tags = $model->tags;
-        if (!is_null($tags)) {
+        if (! is_null($tags)) {
             return $this->collection($model->tags, new TagTransformer);
         }
     }

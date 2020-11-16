@@ -2,9 +2,8 @@
 
 namespace App\Transformers;
 
-use Spatie\Tags\Tag;
-
 use League\Fractal\TransformerAbstract;
+use Spatie\Tags\Tag;
 
 /**
  * Class PermissionTransformer.

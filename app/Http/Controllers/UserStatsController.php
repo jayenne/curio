@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Auth;
 use App\User;
-use Carbon\Carbon;
+use Auth;
 use Cache;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 /**
  * @group Statistics_User
@@ -35,7 +35,7 @@ class UserStatsController extends Controller
         $users = User::where('active_at', '>=', Carbon::now()->subMinutes(config('platform.cache.users.online'))->toDateString())->get();
         $online = [];
         foreach ($users as $user) {
-            if (Cache::has('isOnline-' . $user->id)) {
+            if (Cache::has('isOnline-'.$user->id)) {
                 $online[$user->id] = [
                     'online_since' => $user->login_at,
                     'online_since_string' => Carbon::parse($user->login_at)->diffForHumans(),
@@ -44,7 +44,7 @@ class UserStatsController extends Controller
                 ];
             }
         }
-        
+
         return $online;
     }
 }

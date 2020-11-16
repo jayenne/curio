@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Routing\Controller;
-use Illuminate\Http\Request;
 use App\Transformers\ReactionTransformer;
-use Cog\Laravel\Love\ReactionType\Models\ReactionType;
 use Auth;
+use Cog\Laravel\Love\ReactionType\Models\ReactionType;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class ReactionController extends Controller
 {
@@ -47,7 +47,7 @@ class ReactionController extends Controller
 
         if ($request->ajax()) {
             //if counter doesn't exist yet (never been loved)
-            if (!isset($resource['items'][$action])) {
+            if (! isset($resource['items'][$action])) {
                 $reactions = $reactantFacade->getReactions();
                 $mass = ReactionType::fromName($action)->getMass();
                 foreach ($reactions as $reaction) {
@@ -62,7 +62,7 @@ class ReactionController extends Controller
                     ];
                 }
             }
-            
+
             $weight = $addend * $resource['items'][$action]['mass'];
 
             $resource['items'][$action]['reacted'] = $reacted;
@@ -79,7 +79,7 @@ class ReactionController extends Controller
                 }
             }
         }
-    
+
         return $resource;
     }
 }

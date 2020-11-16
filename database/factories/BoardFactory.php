@@ -1,11 +1,10 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-use Illuminate\Support\Str;
-use App\Helpers\CuriousPeople\CuriousNum;
-
 use App\Board;
+use App\Helpers\CuriousPeople\CuriousNum;
 use Faker\Generator as Faker;
+use Illuminate\Support\Str;
 
 $factory->define(Board::class, function (Faker $faker) {
     $sensitive_chance = config('seeder.posts.sensitive');

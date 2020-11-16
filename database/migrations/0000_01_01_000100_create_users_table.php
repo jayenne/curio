@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             'account_type_default' => config('platform.database.users.account_types.default'),
             'account_type_options' => array_keys(config('platform.database.users.account_types.options')),
         ];
-        Schema::create('users', function (Blueprint $table) use ($options){
+        Schema::create('users', function (Blueprint $table) use ($options) {
             //$table->uuid('id')->primary();
             $table->bigIncrements('id');
             //$table->uuid('uuid')->index()->unique();

@@ -1,11 +1,10 @@
 <?php
 
-use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
 use App\User;
 use App\UserProfile;
-
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 use League\Csv\Reader;
 
 class UsersAdminTableSeeder extends Seeder
@@ -23,7 +22,7 @@ class UsersAdminTableSeeder extends Seeder
         $file = public_path().'/../database/seeds/data/users-admin.csv';
         $csv = Reader::createFromPath($file);
         $timestamp = date('Y-m-d H:i:s');
-        
+
         foreach ($csv as $row) {
             if (empty($row)) {
                 return false;
@@ -39,7 +38,7 @@ class UsersAdminTableSeeder extends Seeder
             $user->setStatus('private', 'seeded');
             $profile = $user->profile()->save(factory(UserProfile::class)->make(['user_id'=>$user->id, 'nickname'=>$user->username]));
         }
-       
+
         $this->setFKCheckOn();
         Model::reguard();
     }

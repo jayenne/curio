@@ -1,13 +1,13 @@
 <?php
+
 namespace App\Helpers\CuriousPeople;
 
 class CuriousArr
 {
-    
-// GENERATE / PARSE TEXT
+    // GENERATE / PARSE TEXT
 
     /**
-     * [stringFromCases convert a cased string to a spaced string. Kebab, snake, pascal, dot.notation]
+     * [stringFromCases convert a cased string to a spaced string. Kebab, snake, pascal, dot.notation].
      * @param  [type] $str [description]
      * @return [type]      [description]
      */
@@ -16,11 +16,12 @@ class CuriousArr
         if (($str = array_search($str, $arr)) !== false) {
             unset($arr[$str]);
         }
+
         return $arr;
     }
 
     /**
-     * [filterPlatformTags description]
+     * [filterPlatformTags description].
      * @param  [type] &$array [description]
      * @param  [type] $remove [description]
      * @return [type]         [description]
@@ -42,7 +43,7 @@ class CuriousArr
     // }
 
     /**
-     * [flattenPlatformTags description]
+     * [flattenPlatformTags description].
      * @param  [type] $array [description]
      * @return [type]        [description]
      */
@@ -54,6 +55,7 @@ class CuriousArr
             $v = $val[3] ?? ($val[2] ?? true);
             $results[$k] = $v;
         }
+
         return $results;
     }
 

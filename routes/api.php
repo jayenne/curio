@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,21 +36,21 @@ s = subscribe (board/post)
 Route::Post('/login', function (Request $request) {
     $data = $request->validate([
             'email' => 'required',
-            'password' => 'required'
+            'password' => 'required',
         ]);
-        
+
     $user = User::whereEmail($request->email)->first();
 
-    if (!$user || !Hash::check($request->password, $user->password)) {
+    if (! $user || ! Hash::check($request->password, $user->password)) {
         return response([
-                'message' => ["login failed"]
+                'message' => ['login failed'],
             ], 401);
     }
 
     return ['access_token'=>$user->createToken('token')->plainTextToken];
 });
 
-Route::group(['middleware' => ['auth:sanctum','verified']], function () {
+Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     // STATS
     Route::name('api.stats.')->prefix('s')->group(function () {
         Route::get('m', 'UserStatsController@count')->name('members');
@@ -68,7 +68,7 @@ Route::group(['middleware' => ['auth:sanctum','verified']], function () {
 
     //MEMBERS
     Route::name('api.curators.')->prefix('c')->group(function () {
-         
+
         // USERS
         Route::get('a', 'UserController@index')->name('all');
         Route::get('o', 'UserController@indexOthers')->name('others');
@@ -88,7 +88,7 @@ Route::group(['middleware' => ['auth:sanctum','verified']], function () {
         // VIEWS / FORMS
         Route::view('f/c', 'models/board/forms/create', ['name' => 'form-create']);
         Route::view('f/u', 'models/board/forms/update', ['name' => 'form-update']);
-        
+
         // CONTROLLERS
         //Route::get('me/last', 'BoardController@getLastItem')->name('me-last');
         Route::get('me', 'BoardController@indexMe')->name('me');

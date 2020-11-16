@@ -1,16 +1,13 @@
 <?php
 
-use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
-
 use App\Helpers\CuriousPeople\CuriousNum;
 use App\Helpers\CuriousPeople\CuriousStorage;
 use App\Helpers\CuriousPeople\CuriousUrl;
-
+use App\Post;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Seeder;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Output\ConsoleOutput;
-
-use App\Post;
 
 //use Faker\Generator as Faker;
 
@@ -21,7 +18,6 @@ class PostsMediaLocalSeeder extends Seeder
      *
      * @return void
      */
-     
     public function __construct()
     {
     }
@@ -51,7 +47,7 @@ class PostsMediaLocalSeeder extends Seeder
             foreach ($posts as $post) {
                 // add remote images
                 $num = CuriousNum::getRandomBias(config('seeder.posts.media'));
-               
+
                 $addimg = rand(0, 10);
                 if ($post->type == 'image' || ($addimg > 7 && $post->type != 'text')) {
                     $img = CuriousStorage::randomFileFromPath('/public/seeder/covers/');
@@ -61,7 +57,7 @@ class PostsMediaLocalSeeder extends Seeder
                     ->preservingOriginal()
                     ->toMediaCollection('cover');
                 }
-                
+
                 $progress_model->advance();
             }
             $progress_model->clear();

@@ -2,29 +2,29 @@
 
 namespace App\Transformers\Posts;
 
-use League\Fractal\TransformerAbstract;
 use App\Helpers\CuriousPeople\CuriousStr;
+use League\Fractal\TransformerAbstract;
 
 class UrlsTransformer extends TransformerAbstract
 {
     /**
-     * List of resources to automatically include
+     * List of resources to automatically include.
      *
      * @var array
      */
     protected $defaultIncludes = [
         //
     ];
-    
+
     /**
-     * List of resources possible to include
+     * List of resources possible to include.
      *
      * @var array
      */
     protected $availableIncludes = [
         //
     ];
-    
+
     /**
      * A Fractal transformer.
      *
@@ -51,6 +51,7 @@ class UrlsTransformer extends TransformerAbstract
                 //'updated_at' => $item->updated_at->toIso8601String(),
             ];
         }
+
         return $data;
     }
 }

@@ -21,6 +21,7 @@ class ResetPasswordController extends Controller
     */
 
     use ResetsPasswords;
+
     // requred to prevent double hashing passwords
     protected function resetPassword($user, $password)
     {
@@ -30,11 +31,12 @@ class ResetPasswordController extends Controller
             ])->save();
 
         $user->updateVarifyEmailAt($user->id);
-        
+
         //\Log::debug('ResetPasswordController: passwordreset');
 
         $this->guard()->login($user);
     }
+
     /**
      * Where to redirect users after resetting their password.
      *

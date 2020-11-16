@@ -5,17 +5,16 @@ namespace App\Jobs;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-
 use Twitter;
 
 class DestroyTweet implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-    protected $data ;
-    protected $config ;
+    protected $data;
+    protected $config;
 
     /**
      * Create a new job instance.
@@ -40,7 +39,7 @@ class DestroyTweet implements ShouldQueue
         } catch (\Exception $e) {
             $response = Twitter::logs();
         }
-        
+
         return $response;
     }
 }

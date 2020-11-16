@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(UserLogin::class, function (Faker $faker) {
     return [
-        	'ip' => '127.0.0.0',
+            'ip' => '127.0.0.0',
             'iso_code' => 'US',
             'country' => 'United States',
             'city' => 'New Haven',

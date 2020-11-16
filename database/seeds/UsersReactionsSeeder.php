@@ -1,16 +1,15 @@
 <?php
-use Illuminate\Support\Arr;
-use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
-use Symfony\Component\Console\Helper\ProgressBar;
-use Symfony\Component\Console\Output\ConsoleOutput;
 
+use App\Board;
 use App\Helpers\CuriousPeople\CuriousNum;
 use App\Helpers\CuriousPeople\CuriousNumBias;
-
-use App\User;
-use App\Board;
 use App\Post;
+use App\User;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Arr;
+use Symfony\Component\Console\Helper\ProgressBar;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 class UsersReactionsSeeder extends Seeder
 {
@@ -19,11 +18,10 @@ class UsersReactionsSeeder extends Seeder
      *
      * @return void
      */
-     
     public function __construct()
     {
     }
-    
+
     public function run()
     {
         //Model::unsetEventDispatcher();
@@ -45,7 +43,7 @@ class UsersReactionsSeeder extends Seeder
                 $reacterFacade = $user->viaLoveReacter();
                 $count = CuriousNum::getRandomBias($vars);
                 $action = $vars['reactions'];
-                
+
                 User::inRandomOrder()->limit($count)->each(function ($model) use ($user, $reacterFacade, $action) {
                     shuffle($action);
                     $reacterFacade->reactTo($model, $action[0], 1.0);
@@ -54,7 +52,7 @@ class UsersReactionsSeeder extends Seeder
                 $progress->advance();
             }
         });
-        
+
         $progress->finish();
 
         $this->setFKCheckOn();

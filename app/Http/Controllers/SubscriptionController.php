@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
-
 use App\Board;
 use App\Post;
-
-use Illuminate\Routing\Controller;
-use Illuminate\Http\Request;
 use App\Transformers\SubscriptionTransformer;
+use Auth;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class SubscriptionController extends Controller
 {
@@ -18,8 +16,8 @@ class SubscriptionController extends Controller
         $reaction = $request->reaction;
         $type = (string) ucfirst(strtolower($request['type']));
         $modelclass = 'App\\'.$type;
-        $model  = $modelclass::findOrFail($request->id);
-        
+        $model = $modelclass::findOrFail($request->id);
+
         $user = Auth::user();
         $user->toggleSubscribe($model);
 
@@ -36,7 +34,7 @@ class SubscriptionController extends Controller
         ->toArray();
 
         $resource = $resource['data'][0];
-        
+
         return $resource;
     }
 }

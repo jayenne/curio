@@ -1,9 +1,10 @@
 <?php
+
 namespace App\Http\Requests;
 
+use Auth;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Hash;
-use Auth;
 
 class UpdateProfileRequest extends FormRequest
 {
@@ -48,10 +49,9 @@ class UpdateProfileRequest extends FormRequest
         // checks user current password
         // before making changes
         $validator->after(function ($validator) {
-            if (!Hash::check($this->current_password, $this->user()->password)) {
+            if (! Hash::check($this->current_password, $this->user()->password)) {
                 $validator->errors()->add('current_password', 'Your current password is not:'.$this->current_password);
             }
         });
-        return;
     }
 }

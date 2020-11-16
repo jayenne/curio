@@ -2,9 +2,9 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
+use App\Helpers\CuriousPeople\CuriousNum;
 use App\Post;
 use Faker\Generator as Faker;
-use App\Helpers\CuriousPeople\CuriousNum;
 
 $factory->define(Post::class, function (Faker $faker) {
     $seperator = '-';
@@ -21,12 +21,13 @@ $factory->define(Post::class, function (Faker $faker) {
     $tagsCount = CuriousNum::getRandomBias(config('seeder.posts.tags'));
     $created_at = $faker->dateTimeBetween($startDate = '-36 months', $endDate = 'now');
     $posted_at = $faker->dateTimeBetween($created_at, $endDate = 'now');
+
     return [
         'user_id' => $rnum,
         'title' => $title,
         'notes' => $faker->text($maxNbChars = 280),
-        'text' => Arr::random([$faker->text($maxNbChars = 280),null]),
-        'text_alt' => Arr::random([$faker->text($maxNbChars = 280),null]),
+        'text' => Arr::random([$faker->text($maxNbChars = 280), null]),
+        'text_alt' => Arr::random([$faker->text($maxNbChars = 280), null]),
         'sensitive' => $faker->boolean($chanceOfGettingTrue = $sensitive_chance),
         'lang'=> $faker->languageCode(),
         'type' => $postTypeOptions[$postTypeRandom],

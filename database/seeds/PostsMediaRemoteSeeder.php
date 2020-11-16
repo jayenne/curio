@@ -1,17 +1,14 @@
 <?php
 
-use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
-
 use App\Helpers\CuriousPeople\CuriousNum;
 use App\Helpers\CuriousPeople\CuriousStorage;
 use App\Helpers\CuriousPeople\CuriousUrl;
-
-use Symfony\Component\Console\Helper\ProgressBar;
-use Symfony\Component\Console\Output\ConsoleOutput;
-
 use App\Post;
 use App\PostRemoteMedia;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Seeder;
+use Symfony\Component\Console\Helper\ProgressBar;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 //use Faker\Generator as Faker;
 
@@ -22,7 +19,6 @@ class PostsMediaRemoteSeeder extends Seeder
      *
      * @return void
      */
-     
     public function __construct()
     {
     }
@@ -77,7 +73,7 @@ class PostsMediaRemoteSeeder extends Seeder
                         $post->remoteMedia()->save(factory(PostRemoteMedia::class)->make(['type'=>'audio', 'url' => $url]));
                         break;
                 }
-                
+
                 $progress_model->advance();
             }
             $progress_model->clear();

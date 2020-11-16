@@ -42,7 +42,7 @@ class FlushPlatform extends Command
         $deep = $this->option('deep');
         $queue = $this->option('queue');
         $this->call('config:cache');
-        
+
         if ($queue) {
             //  Flush Redis
             Redis::command('flushdb');
@@ -57,30 +57,30 @@ class FlushPlatform extends Command
             system('composer dump-autoload');
             system('composer install');
             //  Add storage link
-            if (!\File::exists('public/storage')) {
+            if (! \File::exists('public/storage')) {
                 $this->call('storage:link');
             } else {
                 $this->info('The symblink "public/storage" already exists.');
                 // delete old image uploads
                 if (\File::exists('storage/app/public/users/media')) {
-                    \File::deleteDirectory("storage/app/public/users/media/");
+                    \File::deleteDirectory('storage/app/public/users/media/');
                     $this->info('users/media folder removed.');
                 } else {
                     $this->info('can`t find users/media folder.');
-                };
+                }
                 if (\File::exists('storage/media-library')) {
-                    \File::deleteDirectory("storage/media-library");
+                    \File::deleteDirectory('storage/media-library');
                     $this->info('media-library folder removed.');
                 } else {
                     $this->info('can`t find media-library folder.');
-                };
+                }
                 if (\File::exists('storage/app/public/images/grids')) {
-                    \File::cleanDirectory("storage/app/public/images/grids");
+                    \File::cleanDirectory('storage/app/public/images/grids');
                     $this->info('images/grids folder cleaned.');
                 } else {
-                    \File::makeDirectory("storage/app/public/images/grids");
+                    \File::makeDirectory('storage/app/public/images/grids');
                     $this->info('Created images/grids folder.');
-                };
+                }
             }
             //  Generate app key
             $this->call('key:generate');
@@ -95,7 +95,7 @@ class FlushPlatform extends Command
         $this->call('migrate:fresh');
         $this->call('DB:seed');
         $this->call('love:recount');
-    
+
         //  Flush Redis
         Redis::command('flushdb');
         //  Flush Queues

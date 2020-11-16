@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Routing\Controller;
-use Illuminate\Http\Request;
-use League\Fractal\Pagination\IlluminatePaginatorAdapter;
-use App\Transformers\Posts\PostTransformer;
-
-use Auth;
-use App\User;
-use App\Post;
 use App\Board;
+use App\Post;
+use App\Transformers\Posts\PostTransformer;
+use App\User;
+use Auth;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 
 class PostController extends Controller
 {
@@ -27,14 +26,14 @@ class PostController extends Controller
         //inRandomOrder('1234')->
         $paginator = Post::currentStatus('public')
             ->inRandomOrder('1234')
-            ->withCount(['boards','subscriptions'])
+            ->withCount(['boards', 'subscriptions'])
             ->paginate(config('platform.pagination.posts'));
-        
+
         $model = $paginator->getCollection();
 
         $resource = \Fractal::create()
         ->collection($model)
-        ->parseIncludes(['user','tags', 'media', 'mentions', 'urls', 'reactions'])
+        ->parseIncludes(['user', 'tags', 'media', 'mentions', 'urls', 'reactions'])
         ->transformWith(new PostTransformer)
         ->paginateWith(new IlluminatePaginatorAdapter($paginator))
         ->toArray();
@@ -44,10 +43,10 @@ class PostController extends Controller
             $view = 'models.posts.wrapper';
             $resource = view($view)->with('data', $resource['data'])->render();
         }
+
         return $resource;
     }
- 
-  
+
     /**
      * Show the specified post.
      *
@@ -55,14 +54,13 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-      
     public function show(Request $request, $id)
     {
-        $model = Post::withCount(['boards','subscriptions','media'])->find([$id]);
+        $model = Post::withCount(['boards', 'subscriptions', 'media'])->find([$id]);
 
         $resource = \Fractal::create()
         ->collection($model)
-        ->parseIncludes(['user','tags', 'media', 'mentions', 'urls', 'reactions'])
+        ->parseIncludes(['user', 'tags', 'media', 'mentions', 'urls', 'reactions'])
         ->transformWith(new PostTransformer)
         ->toArray();
         // IF IS AJAX REQUEST FROM FRONTEND
@@ -72,6 +70,7 @@ class PostController extends Controller
             $view = $prefix.$file;
             $resource = view($view)->with('item', $resource['data'][0])->render();
         }
+
         return $resource;
     }
 
@@ -87,11 +86,12 @@ class PostController extends Controller
         $data = Post::Create($request->all());
 
         if ($data) {
-            return response()->json(array('created' => true, 'data' => $data), 201);
+            return response()->json(['created' => true, 'data' => $data], 201);
         }
+
         return $this->response->errorBadRequest();
     }
-    
+
     /**
      * Update the specified resource in storage.
      *
@@ -102,7 +102,8 @@ class PostController extends Controller
     {
         $data = Post::findOrFail($request->id);
         $data->update($request->all());
-        return response()->json(array('success' => true, 'data' => $data), 202);
+
+        return response()->json(['success' => true, 'data' => $data], 202);
     }
 
     /**
@@ -116,14 +117,15 @@ class PostController extends Controller
     {
         $data = Post::findOrFail($request->id);
         $data->delete();
-        return response()->json(array('success' => true, 'data' => $data), 202);
+
+        return response()->json(['success' => true, 'data' => $data], 202);
     }
-    
+
     public function processPosts()
     {
         dispatch(new ProcessPosts());
     }
-    
+
     /**
      * Get the index name for the model.
      *
@@ -133,13 +135,12 @@ class PostController extends Controller
     {
         return 'posts_index';
     }
-    
+
     /**
      * Get the indexable data array for the model.
      *
      * @return array
      */
-    
     public function toSearchableArray()
     {
         $array = $this->toArray();
@@ -157,7 +158,7 @@ class PostController extends Controller
     {
         return $this->id;
     }
-    
+
     /**
      * Log a viewed event for an collection of models.
      * @group Posts
@@ -169,6 +170,7 @@ class PostController extends Controller
         foreach ($model as $item) {
             $item->updateViews();
         }
+
         return true;
     }
 }

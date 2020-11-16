@@ -15,6 +15,6 @@ $factory->define(PostUrls::class, function (Faker $faker) {
         'alt' => '',
         'locale' => '',
         'type' => '',
-        'opengraph' => ''
+        'opengraph' => '',
     ];
 });

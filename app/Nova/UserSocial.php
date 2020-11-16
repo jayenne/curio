@@ -30,7 +30,7 @@ class UserSocial extends Resource
     public static $search = [
         'id',
     ];
-    
+
     public static $displayInNavigation = false;
     public static $group = 'Users';
 

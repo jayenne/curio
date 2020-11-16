@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -31,7 +32,7 @@ class UpdateBoardRequest extends FormRequest
             'body' => 'nullable|string|max:255',
             'layout' => ['required', Rule::in($this->layout_options)],
             'sensitive' => 'nullable|string|max:2048',
-            'status' => 'nullable|string|max:2048'
+            'status' => 'nullable|string|max:2048',
         ];
     }
 
@@ -41,6 +42,7 @@ class UpdateBoardRequest extends FormRequest
             'title.required' => 'A title is required.',
         ];
     }
+
     /**
      * Configure the validator instance.
      *
@@ -56,7 +58,5 @@ class UpdateBoardRequest extends FormRequest
                 $validator->errors()->add('user_id', 'Your User ID does not match your authorisation token.');
             }
         });
-
-        return;
     }
 }
