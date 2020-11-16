@@ -27,7 +27,7 @@ class UsersAdminTableSeeder extends Seeder
             if (empty($row)) {
                 return false;
             }
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'username' => $row[0],
                 'name' => $row[1].' '.$row[2],
                 'first_name' => $row[1],
@@ -36,7 +36,7 @@ class UsersAdminTableSeeder extends Seeder
                 'password' => $row[4],
             ]);
             $user->setStatus('private', 'seeded');
-            $profile = $user->profile()->save(factory(UserProfile::class)->make(['user_id'=>$user->id, 'nickname'=>$user->username]));
+            $profile = $user->profile()->save(UserProfile::factory()->make(['user_id'=>$user->id, 'nickname'=>$user->username]));
         }
 
         $this->setFKCheckOn();

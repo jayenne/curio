@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Board;
 use App\Post;
 use App\UserProfile;
@@ -29,6 +30,8 @@ use Spatie\ModelStatus\HasStatuses;
 
 class User extends Authenticatable implements ReacterableContract, ReactableContract, MustVerifyEmail, HasMedia
 {
+    use HasFactory;
+
     use SoftDeletes,
         Notifiable,
         HasApiTokens,

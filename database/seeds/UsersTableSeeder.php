@@ -39,14 +39,14 @@ class UsersTableSeeder extends Seeder
         $progress->setMessage('Creating Users');
         $progress->start();
 
-        $users = factory(User::class, $users_num)->create()->each(
+        $users = User::factory()->count($users_num)->create()->each(
             function ($user) use ($progress) {
                 // STATUS
                 $user->setStatus('public', 'seeded');
 
                 //USER PROFILE
                 $profile = $user->profile()->save(
-                    factory(UserProfile::class)->make([
+                    UserProfile::factory()->make([
                     'user_id'=>$user->id,
                     'nickname'=> Str::limit($user->username, 15),
                     ])
@@ -69,7 +69,7 @@ class UsersTableSeeder extends Seeder
 
                 // USER SOCIAL
                 $social = $user->socials()->save(
-                    factory(UserSocial::class)
+                    UserSocial::factory()
                     ->make([
                         'user_id'=>$user->id,
                         'name'=>$user->first_name.' '.$user->last_name,

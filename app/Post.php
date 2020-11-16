@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Board;
 use App\PostRemoteMedia;
 use App\User;
@@ -21,6 +22,8 @@ use Spatie\Tags\HasTags;
 
 class Post extends Model implements ReactableContract, HasMedia
 {
+    use HasFactory;
+
     use SoftDeletes,
         Searchable,
         InteractsWithMedia,

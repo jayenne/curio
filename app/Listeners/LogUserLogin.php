@@ -42,7 +42,7 @@ class LogUserLogin
         $loc = geoip()->getLocation($ip = null);
         Log::debug(['ip'=>$ip, 'loc'=>$loc]);
         $loc->user_id = $this->user->id;
-        $geo = $this->user->logins()->save(factory(UserLogin::class)->make($loc->toArray()));
+        $geo = $this->user->logins()->save(UserLogin::factory()->make($loc->toArray()));
 
         // log last seen
         $this->user->login_at = Carbon::now()->format('Y-m-d H:i:s');

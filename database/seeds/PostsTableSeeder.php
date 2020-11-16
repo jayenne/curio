@@ -59,7 +59,7 @@ class PostsTableSeeder extends Seeder
                 // POSTS
                 $posts = $board->posts()
                     ->saveMany(
-                        factory(Post::class, $posts_num)
+                        Post::factory()->count($posts_num)
                             ->create(['user_id'=>$board->user_id])
                             ->each(
                                 function ($post) use ($progress_posts) {
@@ -67,9 +67,9 @@ class PostsTableSeeder extends Seeder
                                     $post_status = array_rand($post_status_array);
                                     $post->setStatus($post_status_array[$post_status], 'seeded');
                                     $mentions_num = CuriousNum::getRandomBias(config('seeder.posts.mentions'));
-                                    $post->mentions()->saveMany(factory(PostMentions::class, $mentions_num)->make());
+                                    $post->mentions()->saveMany(PostMentions::factory()->count($mentions_num)->make());
                                     $urls_num = CuriousNum::getRandomBias(config('seeder.posts.urls'));
-                                    $post->urls()->saveMany(factory(PostUrls::class, $urls_num)->make());
+                                    $post->urls()->saveMany(PostUrls::factory()->count($urls_num)->make());
 
                                     $progress_posts->advance();
                                 }

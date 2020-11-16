@@ -47,7 +47,7 @@ class BoardsTableSeeder extends Seeder
 
                 $boards = $user->boards()
                     ->saveMany(
-                        factory(Board::class, $boards_num)
+                        Board::factory()->count($boards_num)
                         ->create(['user_id'=>$user->id])
                         ->each(function ($board) use ($user, $progress_boards) {
                             // BOARD STATUS

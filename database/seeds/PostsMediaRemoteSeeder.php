@@ -54,23 +54,23 @@ class PostsMediaRemoteSeeder extends Seeder
                 switch ($post->type) {
                     case 'image':
                         $num = CuriousNum::getRandomBias(config('seeder.posts.media'));
-                        $post->remoteMedia()->saveMany(factory(PostRemoteMedia::class, $num)->make(['type'=>'image']));
+                        $post->remoteMedia()->saveMany(PostRemoteMedia::factory()->count($num)->make(['type'=>'image']));
                         break;
                     case 'video':
                         $file = config('platform.media.posts.medium.missing.video');
                         $url = $protocol.$domain.$file;
-                        $post->remoteMedia()->save(factory(PostRemoteMedia::class)->make(['type'=>'video', 'url' => $url]));
+                        $post->remoteMedia()->save(PostRemoteMedia::factory()->make(['type'=>'video', 'url' => $url]));
                         break;
                     case 'anim':
                         $file = CuriousStorage::randomFileFromPath('/public/seeder/gifs/');
                         $file = str_replace('public', '/storage', $file);
                         $url = $protocol.$domain.$file;
-                        $post->remoteMedia()->save(factory(PostRemoteMedia::class)->make(['type'=>'anim', 'url' => $url]));
+                        $post->remoteMedia()->save(PostRemoteMedia::factory()->make(['type'=>'anim', 'url' => $url]));
                         break;
                     case 'audio':
                         $file = config('platform.media.posts.medium.missing.audio');
                         $url = $protocol.$domain.$file;
-                        $post->remoteMedia()->save(factory(PostRemoteMedia::class)->make(['type'=>'audio', 'url' => $url]));
+                        $post->remoteMedia()->save(PostRemoteMedia::factory()->make(['type'=>'audio', 'url' => $url]));
                         break;
                 }
 

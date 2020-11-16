@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Post;
 use App\User;
 use Cog\Contracts\Love\Reactable\Models\Reactable as ReactableContract;
@@ -22,6 +23,8 @@ use Spatie\Tags\HasTags;
 
 class Board extends Model implements ReactableContract, HasMedia
 {
+    use HasFactory;
+
     use SoftDeletes,
         Searchable,
         Reactable,
