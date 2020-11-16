@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\UserSocial;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;

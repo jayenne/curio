@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\Helpers\CuriousPeople\CuriousNum;
 use App\Helpers\CuriousPeople\CuriousStorage;
 use App\Helpers\CuriousPeople\CuriousUrl;

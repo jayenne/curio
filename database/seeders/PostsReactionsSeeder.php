@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\Board;
 use App\Helpers\CuriousPeople\CuriousNum;
 use App\Helpers\CuriousPeople\CuriousNumBias;
@@ -11,7 +13,7 @@ use Illuminate\Support\Arr;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
-class UsersReactionsSeeder extends Seeder
+class PostsReactionsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -28,7 +30,7 @@ class UsersReactionsSeeder extends Seeder
         Model::unguard();
         $this->setFKCheckOff();
 
-        $vars = config('seeder.users.reactions.users');
+        $vars = config('seeder.users.reactions.posts');
 
         $users = User::all();
         $output = new ConsoleOutput();
@@ -37,16 +39,20 @@ class UsersReactionsSeeder extends Seeder
         $progress->setMessage('Generating Reactions');
         $progress->start();
 
-        // LARAVEL-lOVE REACTIONS
-        User::chunk(100, function ($users) use ($vars, $progress) {
+        // LARAVE-LOVE REACTIONS
+        User::chunk(10, function ($users) use ($vars, $progress) {
             foreach ($users as $user) {
                 $reacterFacade = $user->viaLoveReacter();
                 $count = CuriousNum::getRandomBias($vars);
                 $action = $vars['reactions'];
 
-                User::inRandomOrder()->limit($count)->each(function ($model) use ($user, $reacterFacade, $action) {
+                Post::where('user_id', '!=', $user->id)->inRandomOrder()->limit($count)->each(function ($model) use ($user, $reacterFacade, $action) {
                     shuffle($action);
+                    $reactantFacade = $model->viaLoveReactant();
+                    //$reacted = $reactantFacade->isReactedBy($user, $action[0]);
+                    //if (!$reacted) {
                     $reacterFacade->reactTo($model, $action[0], 1.0);
+                    //}
                 });
 
                 $progress->advance();
