@@ -25,7 +25,7 @@ class EventServiceProvider extends ServiceProvider
             SetUserEmailAsVerified::class,
         ],
         'Illuminate\Auth\Events\Login' => [
-            'App\Listeners\LogUserLogin',
+            \App\Listeners\LogUserLogin::class,
         ],
         'user.created' => [
             'App\Events\UserCreatedEvent@userCreated',

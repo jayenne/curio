@@ -27,7 +27,7 @@ class PostsMediaLocalSeeder extends Seeder
         $faker = Faker\Factory::create();
         Model::unguard();
         $this->setFKCheckOff();
-        DB::table('media')->where('model_type', 'App\Post')->delete();
+        DB::table('media')->where('model_type', \App\Post::class)->delete();
 
         // POST
         $posts_count = Post::count();

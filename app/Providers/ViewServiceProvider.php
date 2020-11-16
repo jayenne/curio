@@ -26,7 +26,7 @@ class ViewServiceProvider extends ServiceProvider
     {
         View::composer(
             ['navigation.main', 'layouts.hero'],
-            'App\Http\Composers\AuthenticatedUserComposer'
+            \App\Http\Composers\AuthenticatedUserComposer::class
         );
     }
 }
