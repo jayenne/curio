@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\UserSocial;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use League\Csv\Reader;
 
 class UsersAdminSocialsTableSeeder extends Seeder

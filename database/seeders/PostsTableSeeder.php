@@ -6,14 +6,15 @@ use App\Board;
 use App\Helpers\CuriousPeople\CuriousNum;
 use App\Helpers\CuriousPeople\CuriousStorage;
 use App\Post;
+use App\PostMentions;
 //use Illuminate\Support\Facades\File;
 //use Illuminate\Support\Facades\Storage;
 
-use App\PostMentions;
 use App\PostUrls;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Spatie\Tags\Tag;
 use Symfony\Component\Console\Helper\ProgressBar;

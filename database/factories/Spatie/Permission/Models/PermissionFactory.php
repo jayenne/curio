@@ -4,7 +4,6 @@ namespace Database\Factories\Spatie\Permission\Models;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 

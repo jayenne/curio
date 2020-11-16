@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use League\Csv\Reader;
 
 class LanguagesTableSeeder extends Seeder
@@ -22,7 +23,7 @@ class LanguagesTableSeeder extends Seeder
                 return false;
             }
 
-            \DB::table('languages')->insert(
+            DB::table('languages')->insert(
                 [
                     'family' => $row[0],
                     'name' => $row[1],

@@ -2,11 +2,11 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Post;
 use App\User;
 use Cog\Contracts\Love\Reactable\Models\Reactable as ReactableContract;
 use Cog\Laravel\Love\Reactable\Models\Traits\Reactable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
@@ -24,7 +24,6 @@ use Spatie\Tags\HasTags;
 class Board extends Model implements ReactableContract, HasMedia
 {
     use HasFactory;
-
     use SoftDeletes,
         Searchable,
         Reactable,

@@ -10,6 +10,7 @@ use App\UserSocial;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Spatie\Tags\Tag;
 use Symfony\Component\Console\Helper\ProgressBar;

@@ -1,11 +1,10 @@
 <?php
 
-
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\User;
 use App\UserLogin;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class UserLoginFactory extends Factory
 {

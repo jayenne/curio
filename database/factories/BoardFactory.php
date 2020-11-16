@@ -1,11 +1,10 @@
 <?php
 
-
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Board;
 use App\Helpers\CuriousPeople\CuriousNum;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 class BoardFactory extends Factory

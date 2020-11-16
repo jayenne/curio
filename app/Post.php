@@ -2,12 +2,12 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Board;
 use App\PostRemoteMedia;
 use App\User;
 use Cog\Contracts\Love\Reactable\Models\Reactable as ReactableContract;
 use Cog\Laravel\Love\Reactable\Models\Traits\Reactable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
@@ -23,7 +23,6 @@ use Spatie\Tags\HasTags;
 class Post extends Model implements ReactableContract, HasMedia
 {
     use HasFactory;
-
     use SoftDeletes,
         Searchable,
         InteractsWithMedia,

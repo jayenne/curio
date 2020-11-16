@@ -2,7 +2,6 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Board;
 use App\Post;
 use App\UserProfile;
@@ -13,6 +12,7 @@ use Cog\Contracts\Love\Reacterable\Models\Reacterable as ReacterableContract;
 use Cog\Laravel\Love\Reactable\Models\Traits\Reactable;
 use Cog\Laravel\Love\Reacterable\Models\Traits\Reacterable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -31,7 +31,6 @@ use Spatie\ModelStatus\HasStatuses;
 class User extends Authenticatable implements ReacterableContract, ReactableContract, MustVerifyEmail, HasMedia
 {
     use HasFactory;
-
     use SoftDeletes,
         Notifiable,
         HasApiTokens,

@@ -1,12 +1,11 @@
 <?php
 
-
-
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Helpers\CuriousPeople\CuriousNum;
 use App\Post;
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Arr;
 
 class PostFactory extends Factory
 {

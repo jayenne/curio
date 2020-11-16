@@ -12,7 +12,6 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 class UserProfile extends Model implements HasMedia
 {
     use HasFactory;
-
     use InteractsWithMedia;
 
     /**
